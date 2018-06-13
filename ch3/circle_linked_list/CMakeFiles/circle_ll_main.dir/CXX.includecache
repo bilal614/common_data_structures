@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch3/circle_linked_list/circularly_linked_lists_templated.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+
+/home/bilal/DataStructures/ch3/circle_linked_list/main.cxx
+circularly_linked_lists_templated.h
+/home/bilal/DataStructures/ch3/circle_linked_list/circularly_linked_lists_templated.h
+fstream
+-
+

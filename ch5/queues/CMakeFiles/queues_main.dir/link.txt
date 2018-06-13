@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/queues_main.dir/main.cxx.o  -o queues_main -rdynamic 

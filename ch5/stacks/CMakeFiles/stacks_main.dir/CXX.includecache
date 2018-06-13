@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch5/stacks/data_structure_stacks.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+singly_linked_lists_templated.h
+/home/bilal/DataStructures/ch5/stacks/singly_linked_lists_templated.h
+
+/home/bilal/DataStructures/ch5/stacks/main.cxx
+data_structure_stacks.h
+/home/bilal/DataStructures/ch5/stacks/data_structure_stacks.h
+
+common_ds/singly_linked_lists_templated.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+

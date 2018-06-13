@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch3/doubly_linked_lists/doubly_linked_lists_templated.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+
+/home/bilal/DataStructures/ch3/doubly_linked_lists/main.cpp
+doubly_linked_lists_templated.h
+/home/bilal/DataStructures/ch3/doubly_linked_lists/doubly_linked_lists_templated.h
+fstream
+-
+

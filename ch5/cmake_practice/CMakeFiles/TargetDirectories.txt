@@ -1,0 +1,3 @@
+/home/bilal/DataStructures/ch5/cmake_practice/CMakeFiles/edit_cache.dir
+/home/bilal/DataStructures/ch5/cmake_practice/CMakeFiles/rebuild_cache.dir
+/home/bilal/DataStructures/ch5/cmake_practice/CMakeFiles/Tutorial.dir

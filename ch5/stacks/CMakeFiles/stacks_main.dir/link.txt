@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/stacks_main.dir/main.cxx.o  -o stacks_main -rdynamic 

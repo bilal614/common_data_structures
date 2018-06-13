@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch3/arrays/arrays_templated.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+
+/home/bilal/DataStructures/ch3/arrays/main.cpp
+arrays_templated.h
+/home/bilal/DataStructures/ch3/arrays/arrays_templated.h
+

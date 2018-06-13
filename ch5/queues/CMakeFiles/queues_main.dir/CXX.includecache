@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch5/queues/data_structure_queues.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+circularly_linked_lists_templated.h
+/home/bilal/DataStructures/ch5/queues/circularly_linked_lists_templated.h
+
+/home/bilal/DataStructures/ch5/queues/main.cxx
+data_structure_queues.h
+/home/bilal/DataStructures/ch5/queues/data_structure_queues.h
+string
+-
+
+common_ds/circularly_linked_lists_templated.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+

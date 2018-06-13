@@ -1,0 +1,5 @@
+/home/bilal/DataStructures/ch5/stacks/CMakeFiles/edit_cache.dir
+/home/bilal/DataStructures/ch5/stacks/CMakeFiles/rebuild_cache.dir
+/home/bilal/DataStructures/ch5/stacks/CMakeFiles/stacks_main.dir
+/home/bilal/DataStructures/ch5/stacks/common_ds/CMakeFiles/edit_cache.dir
+/home/bilal/DataStructures/ch5/stacks/common_ds/CMakeFiles/rebuild_cache.dir

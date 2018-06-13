@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch6/lists/dll_node_list_iterator.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+
+/home/bilal/DataStructures/ch6/lists/main.cxx
+dll_node_list_iterator.h
+/home/bilal/DataStructures/ch6/lists/dll_node_list_iterator.h
+string
+-
+

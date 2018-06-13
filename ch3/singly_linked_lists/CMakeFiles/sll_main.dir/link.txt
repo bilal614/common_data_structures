@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/sll_main.dir/main.cpp.o  -o sll_main -rdynamic 
