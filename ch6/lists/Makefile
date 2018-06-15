@@ -123,32 +123,59 @@ iterators_main/fast:
 	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/build
 .PHONY : iterators_main/fast
 
-main.o: main.cxx.o
+src/dll_node_list_iterator.o: src/dll_node_list_iterator.cxx.o
 
-.PHONY : main.o
+.PHONY : src/dll_node_list_iterator.o
 
 # target to build an object file
-main.cxx.o:
-	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/main.cxx.o
-.PHONY : main.cxx.o
+src/dll_node_list_iterator.cxx.o:
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o
+.PHONY : src/dll_node_list_iterator.cxx.o
 
-main.i: main.cxx.i
+src/dll_node_list_iterator.i: src/dll_node_list_iterator.cxx.i
 
-.PHONY : main.i
+.PHONY : src/dll_node_list_iterator.i
 
 # target to preprocess a source file
-main.cxx.i:
-	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/main.cxx.i
-.PHONY : main.cxx.i
+src/dll_node_list_iterator.cxx.i:
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.i
+.PHONY : src/dll_node_list_iterator.cxx.i
 
-main.s: main.cxx.s
+src/dll_node_list_iterator.s: src/dll_node_list_iterator.cxx.s
 
-.PHONY : main.s
+.PHONY : src/dll_node_list_iterator.s
 
 # target to generate assembly for a file
-main.cxx.s:
-	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/main.cxx.s
-.PHONY : main.cxx.s
+src/dll_node_list_iterator.cxx.s:
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.s
+.PHONY : src/dll_node_list_iterator.cxx.s
+
+src/main.o: src/main.cxx.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cxx.o:
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/main.cxx.o
+.PHONY : src/main.cxx.o
+
+src/main.i: src/main.cxx.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cxx.i:
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/main.cxx.i
+.PHONY : src/main.cxx.i
+
+src/main.s: src/main.cxx.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cxx.s:
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/main.cxx.s
+.PHONY : src/main.cxx.s
 
 # Help Target
 help:
@@ -159,9 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... iterators_main"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/dll_node_list_iterator.o"
+	@echo "... src/dll_node_list_iterator.i"
+	@echo "... src/dll_node_list_iterator.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

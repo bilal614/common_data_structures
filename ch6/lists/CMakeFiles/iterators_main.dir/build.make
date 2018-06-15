@@ -57,41 +57,67 @@ include CMakeFiles/iterators_main.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/iterators_main.dir/flags.make
 
-CMakeFiles/iterators_main.dir/main.cxx.o: CMakeFiles/iterators_main.dir/flags.make
-CMakeFiles/iterators_main.dir/main.cxx.o: main.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bilal/DataStructures/ch6/lists/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/iterators_main.dir/main.cxx.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/iterators_main.dir/main.cxx.o -c /home/bilal/DataStructures/ch6/lists/main.cxx
+CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o: CMakeFiles/iterators_main.dir/flags.make
+CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o: src/dll_node_list_iterator.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bilal/DataStructures/ch6/lists/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o -c /home/bilal/DataStructures/ch6/lists/src/dll_node_list_iterator.cxx
 
-CMakeFiles/iterators_main.dir/main.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/iterators_main.dir/main.cxx.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bilal/DataStructures/ch6/lists/main.cxx > CMakeFiles/iterators_main.dir/main.cxx.i
+CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bilal/DataStructures/ch6/lists/src/dll_node_list_iterator.cxx > CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.i
 
-CMakeFiles/iterators_main.dir/main.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/iterators_main.dir/main.cxx.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bilal/DataStructures/ch6/lists/main.cxx -o CMakeFiles/iterators_main.dir/main.cxx.s
+CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bilal/DataStructures/ch6/lists/src/dll_node_list_iterator.cxx -o CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.s
 
-CMakeFiles/iterators_main.dir/main.cxx.o.requires:
+CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.requires:
 
-.PHONY : CMakeFiles/iterators_main.dir/main.cxx.o.requires
+.PHONY : CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.requires
 
-CMakeFiles/iterators_main.dir/main.cxx.o.provides: CMakeFiles/iterators_main.dir/main.cxx.o.requires
-	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/main.cxx.o.provides.build
-.PHONY : CMakeFiles/iterators_main.dir/main.cxx.o.provides
+CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.provides: CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.requires
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.provides.build
+.PHONY : CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.provides
 
-CMakeFiles/iterators_main.dir/main.cxx.o.provides.build: CMakeFiles/iterators_main.dir/main.cxx.o
+CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.provides.build: CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o
+
+
+CMakeFiles/iterators_main.dir/src/main.cxx.o: CMakeFiles/iterators_main.dir/flags.make
+CMakeFiles/iterators_main.dir/src/main.cxx.o: src/main.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bilal/DataStructures/ch6/lists/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/iterators_main.dir/src/main.cxx.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/iterators_main.dir/src/main.cxx.o -c /home/bilal/DataStructures/ch6/lists/src/main.cxx
+
+CMakeFiles/iterators_main.dir/src/main.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/iterators_main.dir/src/main.cxx.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bilal/DataStructures/ch6/lists/src/main.cxx > CMakeFiles/iterators_main.dir/src/main.cxx.i
+
+CMakeFiles/iterators_main.dir/src/main.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/iterators_main.dir/src/main.cxx.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bilal/DataStructures/ch6/lists/src/main.cxx -o CMakeFiles/iterators_main.dir/src/main.cxx.s
+
+CMakeFiles/iterators_main.dir/src/main.cxx.o.requires:
+
+.PHONY : CMakeFiles/iterators_main.dir/src/main.cxx.o.requires
+
+CMakeFiles/iterators_main.dir/src/main.cxx.o.provides: CMakeFiles/iterators_main.dir/src/main.cxx.o.requires
+	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/main.cxx.o.provides.build
+.PHONY : CMakeFiles/iterators_main.dir/src/main.cxx.o.provides
+
+CMakeFiles/iterators_main.dir/src/main.cxx.o.provides.build: CMakeFiles/iterators_main.dir/src/main.cxx.o
 
 
 # Object files for target iterators_main
 iterators_main_OBJECTS = \
-"CMakeFiles/iterators_main.dir/main.cxx.o"
+"CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o" \
+"CMakeFiles/iterators_main.dir/src/main.cxx.o"
 
 # External object files for target iterators_main
 iterators_main_EXTERNAL_OBJECTS =
 
-iterators_main: CMakeFiles/iterators_main.dir/main.cxx.o
+iterators_main: CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o
+iterators_main: CMakeFiles/iterators_main.dir/src/main.cxx.o
 iterators_main: CMakeFiles/iterators_main.dir/build.make
 iterators_main: CMakeFiles/iterators_main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bilal/DataStructures/ch6/lists/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable iterators_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bilal/DataStructures/ch6/lists/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable iterators_main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/iterators_main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -99,7 +125,8 @@ CMakeFiles/iterators_main.dir/build: iterators_main
 
 .PHONY : CMakeFiles/iterators_main.dir/build
 
-CMakeFiles/iterators_main.dir/requires: CMakeFiles/iterators_main.dir/main.cxx.o.requires
+CMakeFiles/iterators_main.dir/requires: CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o.requires
+CMakeFiles/iterators_main.dir/requires: CMakeFiles/iterators_main.dir/src/main.cxx.o.requires
 
 .PHONY : CMakeFiles/iterators_main.dir/requires
 

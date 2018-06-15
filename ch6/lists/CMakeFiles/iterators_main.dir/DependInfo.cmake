@@ -4,12 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/bilal/DataStructures/ch6/lists/main.cxx" "/home/bilal/DataStructures/ch6/lists/CMakeFiles/iterators_main.dir/main.cxx.o"
+  "/home/bilal/DataStructures/ch6/lists/src/dll_node_list_iterator.cxx" "/home/bilal/DataStructures/ch6/lists/CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o"
+  "/home/bilal/DataStructures/ch6/lists/src/main.cxx" "/home/bilal/DataStructures/ch6/lists/CMakeFiles/iterators_main.dir/src/main.cxx.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "include"
   )
 
 # Targets to which this target links.

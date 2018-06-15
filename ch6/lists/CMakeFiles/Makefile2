@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/bilal/DataStructures/ch6/lists
 CMakeFiles/iterators_main.dir/all:
 	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/depend
 	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bilal/DataStructures/ch6/lists/CMakeFiles --progress-num=1,2 "Built target iterators_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bilal/DataStructures/ch6/lists/CMakeFiles --progress-num=1,2,3 "Built target iterators_main"
 .PHONY : CMakeFiles/iterators_main.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/iterators_main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/iterators_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bilal/DataStructures/ch6/lists/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bilal/DataStructures/ch6/lists/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/iterators_main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bilal/DataStructures/ch6/lists/CMakeFiles 0
 .PHONY : CMakeFiles/iterators_main.dir/rule
