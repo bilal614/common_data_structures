@@ -1,0 +1,3 @@
+/home/bilal/DataStructures/ch6/lists_and_sequences/CMakeFiles/edit_cache.dir
+/home/bilal/DataStructures/ch6/lists_and_sequences/CMakeFiles/rebuild_cache.dir
+/home/bilal/DataStructures/ch6/lists_and_sequences/CMakeFiles/iterators_main.dir
