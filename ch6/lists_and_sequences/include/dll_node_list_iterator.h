@@ -68,6 +68,8 @@ class NodeSequence: public NodeList<T>
 		int indexOf(typename NodeList<T>::Iterator& p) const;
 
 		void printElements();
+		void swap(typename NodeList<T>::Iterator& a, typename NodeList<T>::Iterator& b);
+		void bubbleSort();
 
 };
 

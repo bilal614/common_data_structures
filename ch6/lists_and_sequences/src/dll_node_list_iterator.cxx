@@ -170,7 +170,35 @@ void NodeSequence<T>::printElements()
 	std::cout << std::endl;
 }
 
+template <typename T>
+void NodeSequence<T>::swap(typename NodeList<T>::Iterator& a, typename NodeList<T>::Iterator& b)
+{
+	T tmp = *a;
+	*a = *b;
+	*b = tmp;
+	std::cout << "swapped: " << *a <<", with " << *b << std::endl;
+}
 
+template <typename T>
+void NodeSequence<T>::bubbleSort()
+{
+	std::cout << "beginning: ";
+	printElements();
+	int n = this->size();
+	for(int i = 0; i < n; i++)
+	{
+		typename NodeList<T>::Iterator pred = this->begin();
+		for(int j = 1; j < n-i; j++)
+		{
+			typename NodeList<T>::Iterator current = this->atIndex(j);
+			if(*current < *pred)
+				this->swap(pred, current);
+			std::cout << "begin iterator: " << *pred << std::endl;
+		}
+		std::cout << "pass: "<< i << " : ";
+		printElements();
+	}
+}
 
 /**** Explicitly tell compiler which templates to instantiate for every definition in file. ***/
 template NodeList<int>::Iterator::Iterator(Node* u);
@@ -279,3 +307,16 @@ template void NodeSequence<int>::printElements();
 template void NodeSequence<std::string>::printElements();
 template void NodeSequence<float>::printElements();
 template void NodeSequence<double>::printElements();
+
+template void NodeSequence<int>::swap(typename NodeList<int>::Iterator& a, typename NodeList<int>::Iterator& b);
+template void NodeSequence<std::string>::swap(typename NodeList<std::string>::Iterator& a, typename NodeList<std::string>::Iterator& b);
+template void NodeSequence<float>::swap(typename NodeList<float>::Iterator& a, typename NodeList<float>::Iterator& b);
+template void NodeSequence<double>::swap(typename NodeList<double>::Iterator& a, typename NodeList<double>::Iterator& b);
+
+template void NodeSequence<int>::bubbleSort();
+template void NodeSequence<std::string>::bubbleSort();
+template void NodeSequence<float>::bubbleSort();
+template void NodeSequence<double>::bubbleSort();
+
+
+

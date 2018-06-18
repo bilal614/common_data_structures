@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 	dll_nl_float.printElements();
 	dll_nl_float.insertBack(5.412);
 	dll_nl_float.printElements();
+	dll_nl_float.insertBack(7.845);
 	
 
 	std::cout << "Will demonstrate use of atIndex" << std::endl;
@@ -50,5 +51,8 @@ int main(int argc, char *argv[])
 		std::cout << i << ": " << *it << std::endl;
 	}
 
+	std::cout << "Doing bubbleSort..." << std::endl;
+	dll_nl_float.bubbleSort();
+	//dll_nl_float.printElements();
 	return 0;
 }
