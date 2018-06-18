@@ -4,10 +4,6 @@
 CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o: src/dll_node_list_iterator.cxx
 CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o: include/dll_node_list_iterator.h
 
-CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.o: src/dll_node_sequence.cxx
-CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.o: include/dll_node_list_iterator.h
-CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.o: include/dll_node_sequence.h
-
 CMakeFiles/iterators_main.dir/src/main.cxx.o: src/main.cxx
 CMakeFiles/iterators_main.dir/src/main.cxx.o: include/dll_node_list_iterator.h
 

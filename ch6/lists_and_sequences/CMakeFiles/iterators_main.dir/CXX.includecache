@@ -10,10 +10,6 @@
 dll_node_list_iterator.h
 /home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_list_iterator.h
 
-/home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_sequence.cxx
-dll_node_sequence.h
-/home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_sequence.h
-
 /home/bilal/DataStructures/ch6/lists_and_sequences/src/main.cxx
 dll_node_list_iterator.h
 /home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_list_iterator.h
@@ -29,8 +25,4 @@ exception
 -
 string
 -
-
-include/dll_node_sequence.h
-dll_node_list_iterator.h
-include/dll_node_list_iterator.h
 

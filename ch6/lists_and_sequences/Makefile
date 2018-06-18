@@ -150,33 +150,6 @@ src/dll_node_list_iterator.cxx.s:
 	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.s
 .PHONY : src/dll_node_list_iterator.cxx.s
 
-src/dll_node_sequence.o: src/dll_node_sequence.cxx.o
-
-.PHONY : src/dll_node_sequence.o
-
-# target to build an object file
-src/dll_node_sequence.cxx.o:
-	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.o
-.PHONY : src/dll_node_sequence.cxx.o
-
-src/dll_node_sequence.i: src/dll_node_sequence.cxx.i
-
-.PHONY : src/dll_node_sequence.i
-
-# target to preprocess a source file
-src/dll_node_sequence.cxx.i:
-	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.i
-.PHONY : src/dll_node_sequence.cxx.i
-
-src/dll_node_sequence.s: src/dll_node_sequence.cxx.s
-
-.PHONY : src/dll_node_sequence.s
-
-# target to generate assembly for a file
-src/dll_node_sequence.cxx.s:
-	$(MAKE) -f CMakeFiles/iterators_main.dir/build.make CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.s
-.PHONY : src/dll_node_sequence.cxx.s
-
 src/main.o: src/main.cxx.o
 
 .PHONY : src/main.o
@@ -216,9 +189,6 @@ help:
 	@echo "... src/dll_node_list_iterator.o"
 	@echo "... src/dll_node_list_iterator.i"
 	@echo "... src/dll_node_list_iterator.s"
-	@echo "... src/dll_node_sequence.o"
-	@echo "... src/dll_node_sequence.i"
-	@echo "... src/dll_node_sequence.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

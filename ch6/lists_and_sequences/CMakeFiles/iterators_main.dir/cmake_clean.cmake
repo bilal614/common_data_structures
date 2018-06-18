@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o"
-  "CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.o"
   "CMakeFiles/iterators_main.dir/src/main.cxx.o"
   "iterators_main.pdb"
   "iterators_main"

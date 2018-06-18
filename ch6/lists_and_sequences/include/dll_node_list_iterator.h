@@ -1,10 +1,11 @@
 #ifndef DLL_PRACTICE_H
-#define DLL_PRACTICE_H
 
 #include <iostream>
 #include <typeinfo>
 #include <exception>
 #include <string>
+
+#define DLL_PRACTICE_H
 
 
 template <typename T>
@@ -60,31 +61,13 @@ class NodeList
 template <typename T>
 class NodeSequence: public NodeList<T>
 {
-	/*
-	public:
-		class Iterator
-		{
-			public:
-				T& operator*();//reference to the element
-				bool operator==(const Iterator& p) const;//compare positions
-				bool operator!=(const Iterator& p) const;
-				Iterator& operator++();//move to next position
-				Iterator& operator--();//move to previous position
 
-				friend class NodeSequence<T>;
-			//private:
-			public:
-				typedef typename NodeList<T>::Node* NodePtr;
-
-				NodePtr v;//pointer to node
-				Iterator(NodePtr u);//create from node
-
-		};
-		*/
 	public:
 		typename NodeList<T>::Iterator atIndex(int i) const;
 
 		int indexOf(typename NodeList<T>::Iterator& p) const;
+
+		void printElements();
 
 };
 

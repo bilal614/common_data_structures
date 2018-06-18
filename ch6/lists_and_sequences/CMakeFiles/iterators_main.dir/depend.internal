@@ -4,10 +4,6 @@
 CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o
  /home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_list_iterator.cxx
  include/dll_node_list_iterator.h
-CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.o
- /home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_sequence.cxx
- include/dll_node_list_iterator.h
- include/dll_node_sequence.h
 CMakeFiles/iterators_main.dir/src/main.cxx.o
  /home/bilal/DataStructures/ch6/lists_and_sequences/src/main.cxx
  include/dll_node_list_iterator.h

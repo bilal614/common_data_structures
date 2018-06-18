@@ -139,7 +139,7 @@ void NodeList<T>::printElements()
 template <typename T>
 typename NodeList<T>::Iterator NodeSequence<T>::atIndex(int i) const
 {
-	//typename NodeSequence<T>;
+
 	typename NodeList<T>::Iterator p = NodeList<T>::begin();
 	for(int j = 0; j < i; j++) ++p;
 	return p;
@@ -157,6 +157,19 @@ int NodeSequence<T>::indexOf(typename NodeList<T>::Iterator& p) const
 	}
 	return i;
 }
+
+template <typename T>
+void NodeSequence<T>::printElements()
+{
+	typename NodeList<T>::Iterator it(this->begin());
+	typename NodeList<T>::Iterator ending(this->end());
+	for(; it != ending; ++it)
+	{
+		std::cout << indexOf(it) << ": " << *it << ", ";
+	}
+	std::cout << std::endl;
+}
+
 
 
 /**** Explicitly tell compiler which templates to instantiate for every definition in file. ***/
@@ -261,3 +274,8 @@ template int NodeSequence<int>::indexOf(NodeList<int>::Iterator& p) const;
 template int NodeSequence<std::string>::indexOf(NodeList<std::string>::Iterator& p) const;
 template int NodeSequence<float>::indexOf(NodeList<float>::Iterator& p) const;
 template int NodeSequence<double>::indexOf(NodeList<double>::Iterator& p) const;
+
+template void NodeSequence<int>::printElements();
+template void NodeSequence<std::string>::printElements();
+template void NodeSequence<float>::printElements();
+template void NodeSequence<double>::printElements();

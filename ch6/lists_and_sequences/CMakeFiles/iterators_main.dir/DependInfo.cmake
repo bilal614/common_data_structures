@@ -5,7 +5,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_list_iterator.cxx" "/home/bilal/DataStructures/ch6/lists_and_sequences/CMakeFiles/iterators_main.dir/src/dll_node_list_iterator.cxx.o"
-  "/home/bilal/DataStructures/ch6/lists_and_sequences/src/dll_node_sequence.cxx" "/home/bilal/DataStructures/ch6/lists_and_sequences/CMakeFiles/iterators_main.dir/src/dll_node_sequence.cxx.o"
   "/home/bilal/DataStructures/ch6/lists_and_sequences/src/main.cxx" "/home/bilal/DataStructures/ch6/lists_and_sequences/CMakeFiles/iterators_main.dir/src/main.cxx.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

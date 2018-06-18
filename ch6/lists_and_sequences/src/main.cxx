@@ -42,5 +42,13 @@ int main(int argc, char *argv[])
 	dll_nl_float.insertBack(5.412);
 	dll_nl_float.printElements();
 	
+
+	std::cout << "Will demonstrate use of atIndex" << std::endl;
+	for(int i = 0; i < dll_nl_float.size(); i++)
+	{
+		NodeList<float>::Iterator it = dll_nl_float.atIndex(i);
+		std::cout << i << ": " << *it << std::endl;
+	}
+
 	return 0;
 }
