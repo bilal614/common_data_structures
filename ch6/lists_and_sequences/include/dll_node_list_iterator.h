@@ -23,11 +23,14 @@ class NodeList
 		class Iterator
 		{
 			public:
+				//NOTE: You must ensure that the Iterator does not go out of bound.
 				T& operator*();//reference to the element
 				bool operator==(const Iterator& p) const;//compare positions
 				bool operator!=(const Iterator& p) const;
 				Iterator& operator++();//move to next position
 				Iterator& operator--();//move to previous position
+				Iterator& operator+( int pos);
+				Iterator& operator-( int pos);
 
 				friend class NodeList<T>;
 			//private:
@@ -68,7 +71,7 @@ class NodeSequence: public NodeList<T>
 		int indexOf(typename NodeList<T>::Iterator& p) const;
 
 		void printElements();
-		void swap(typename NodeList<T>::Iterator& a, typename NodeList<T>::Iterator& b);
+		typename NodeList<T>::Iterator swap(typename NodeList<T>::Iterator& a, typename NodeList<T>::Iterator& b);
 		void bubbleSort();
 
 };

@@ -39,6 +39,30 @@ typename NodeList<T>::Iterator& NodeList<T>::Iterator::operator--()
 	return *this;
 }
 
+template <typename T>
+typename NodeList<T>::Iterator& NodeList<T>::Iterator::operator+( int pos)
+{
+	int i = 0;
+	while(i < pos)
+	{
+		++i;
+		v = v->next;
+	}
+	return *this;
+}
+
+template <typename T>
+typename NodeList<T>::Iterator& NodeList<T>::Iterator::operator-( int pos)
+{
+	int i = 0;
+	while(i < pos)
+	{
+		++i;
+		v = v->prev;
+	}
+	return *this;
+}
+
 
 template <typename T>
 NodeList<T>::NodeList()
@@ -171,12 +195,14 @@ void NodeSequence<T>::printElements()
 }
 
 template <typename T>
-void NodeSequence<T>::swap(typename NodeList<T>::Iterator& a, typename NodeList<T>::Iterator& b)
+typename NodeList<T>::Iterator NodeSequence<T>::swap(typename NodeList<T>::Iterator& first, typename NodeList<T>::Iterator& second)
 {
-	T tmp = *a;
-	*a = *b;
-	*b = tmp;
-	std::cout << "swapped: " << *a <<", with " << *b << std::endl;
+	T tmp = *first;
+	*first = *second;
+	*second = tmp;
+	//std::cout << "swapped: " << *first <<", with " << *second << std::endl;
+	//printElements();
+	return first;
 }
 
 template <typename T>
@@ -185,19 +211,30 @@ void NodeSequence<T>::bubbleSort()
 	std::cout << "beginning: ";
 	printElements();
 	int n = this->size();
-	for(int i = 0; i < n; i++)
+	bool swapped = true;
+
+	for(int i = 0; swapped && i < n; i++)
 	{
 		typename NodeList<T>::Iterator pred = this->begin();
-		for(int j = 1; j < n-i; j++)
+		typename NodeList<T>::Iterator current = this->begin();
+		++current;
+		typename NodeList<T>::Iterator last = this->end();
+		last = last - i;
+		for(;current!= last;++current, ++pred)
 		{
-			typename NodeList<T>::Iterator current = this->atIndex(j);
+			std::cout << "pred iterator: " << *pred << ", current: " << *current << std::endl;
 			if(*current < *pred)
-				this->swap(pred, current);
-			std::cout << "begin iterator: " << *pred << std::endl;
+			{
+				pred = swap(pred, current);
+				swapped = true;
+			}
 		}
 		std::cout << "pass: "<< i << " : ";
 		printElements();
+		if(!swapped)
+			break;
 	}
+
 }
 
 /**** Explicitly tell compiler which templates to instantiate for every definition in file. ***/
@@ -230,6 +267,16 @@ template NodeList<int>::Iterator& NodeList<int>::Iterator::operator--();
 template NodeList<std::string>::Iterator& NodeList<std::string>::Iterator::operator--();
 template NodeList<float>::Iterator& NodeList<float>::Iterator::operator--();
 template NodeList<double>::Iterator& NodeList<double>::Iterator::operator--();
+
+template NodeList<int>::Iterator& NodeList<int>::Iterator::operator+( int pos);
+template NodeList<std::string>::Iterator& NodeList<std::string>::Iterator::operator+( int pos);
+template NodeList<float>::Iterator& NodeList<float>::Iterator::operator+( int pos);
+template NodeList<double>::Iterator& NodeList<double>::Iterator::operator+( int pos);
+
+template NodeList<int>::Iterator& NodeList<int>::Iterator::operator-( int pos);
+template NodeList<std::string>::Iterator& NodeList<std::string>::Iterator::operator-( int pos);
+template NodeList<float>::Iterator& NodeList<float>::Iterator::operator-( int pos);
+template NodeList<double>::Iterator& NodeList<double>::Iterator::operator-( int pos);
 
 template NodeList<int>::NodeList();
 template NodeList<std::string>::NodeList();
@@ -308,15 +355,14 @@ template void NodeSequence<std::string>::printElements();
 template void NodeSequence<float>::printElements();
 template void NodeSequence<double>::printElements();
 
-template void NodeSequence<int>::swap(typename NodeList<int>::Iterator& a, typename NodeList<int>::Iterator& b);
-template void NodeSequence<std::string>::swap(typename NodeList<std::string>::Iterator& a, typename NodeList<std::string>::Iterator& b);
-template void NodeSequence<float>::swap(typename NodeList<float>::Iterator& a, typename NodeList<float>::Iterator& b);
-template void NodeSequence<double>::swap(typename NodeList<double>::Iterator& a, typename NodeList<double>::Iterator& b);
+template NodeList<int>::Iterator NodeSequence<int>::swap(typename NodeList<int>::Iterator& a, typename NodeList<int>::Iterator& b);
+template NodeList<std::string>::Iterator NodeSequence<std::string>::swap(typename NodeList<std::string>::Iterator& a, typename NodeList<std::string>::Iterator& b);
+template NodeList<float>::Iterator NodeSequence<float>::swap(typename NodeList<float>::Iterator& a, typename NodeList<float>::Iterator& b);
+template NodeList<double>::Iterator NodeSequence<double>::swap(typename NodeList<double>::Iterator& a, typename NodeList<double>::Iterator& b);
 
 template void NodeSequence<int>::bubbleSort();
 template void NodeSequence<std::string>::bubbleSort();
 template void NodeSequence<float>::bubbleSort();
 template void NodeSequence<double>::bubbleSort();
-
 
 

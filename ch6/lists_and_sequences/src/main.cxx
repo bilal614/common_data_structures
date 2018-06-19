@@ -1,4 +1,3 @@
-
 #include "dll_node_list_iterator.h"
 #include <string>
 
@@ -34,14 +33,19 @@ int main(int argc, char *argv[])
 	dll_nl_float.insertFront(10.567);
 	dll_nl_float.printElements(); 
 	dll_nl_float.insertFront(14.978);
-	dll_nl_float.printElements(); 
+	dll_nl_float.printElements();
 	dll_nl_float.insertFront(7.777);
 	dll_nl_float.printElements(); 
 	dll_nl_float.eraseFront();
 	dll_nl_float.printElements();
+	dll_nl_float.insertBack(18.111);
+	dll_nl_float.printElements();
 	dll_nl_float.insertBack(5.412);
 	dll_nl_float.printElements();
 	dll_nl_float.insertBack(7.845);
+	dll_nl_float.printElements();
+	dll_nl_float.insertBack(1.234);
+	dll_nl_float.printElements();
 	
 
 	std::cout << "Will demonstrate use of atIndex" << std::endl;
