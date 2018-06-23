@@ -211,15 +211,15 @@ void NodeSequence<T>::bubbleSort()
 	std::cout << "beginning: ";
 	printElements();
 	int n = this->size();
-	bool swapped = true;
 
-	for(int i = 0; swapped && i < n; i++)
+	for(int i = 0; i < n; i++)
 	{
 		typename NodeList<T>::Iterator pred = this->begin();
 		typename NodeList<T>::Iterator current = this->begin();
 		++current;
 		typename NodeList<T>::Iterator last = this->end();
 		last = last - i;
+		/*
 		for(;current!= last;++current, ++pred)
 		{
 			std::cout << "pred iterator: " << *pred << ", current: " << *current << std::endl;
@@ -229,12 +229,21 @@ void NodeSequence<T>::bubbleSort()
 				swapped = true;
 			}
 		}
+		*/
+		while(current!= last)
+		{
+			std::cout << "pred iterator: " << *pred << ", current: " << *current << std::endl;
+			if(*current < *pred)
+			{
+				pred = swap(pred, current);
+			}
+			++current; 
+			++pred;
+		}
 		std::cout << "pass: "<< i << " : ";
 		printElements();
-		if(!swapped)
-			break;
 	}
-
+	
 }
 
 /**** Explicitly tell compiler which templates to instantiate for every definition in file. ***/
