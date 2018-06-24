@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch7/src/main.cxx
+tree_interface.h
+/home/bilal/DataStructures/ch7/src/tree_interface.h
+
+/home/bilal/DataStructures/ch7/src/tree_interface.cxx
+tree_interface.h
+/home/bilal/DataStructures/ch7/src/tree_interface.h
+
+include/tree_interface.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+
