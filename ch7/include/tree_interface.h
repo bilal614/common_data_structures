@@ -11,18 +11,19 @@
 #define TREE_INTERFACE 
 
 
-//template <typename T>
-//class Position;
-
 template <typename T>
 class NodeList
 {
 	public:
-		struct Node
+		class Node
 		{
-			T element;
-			Node* prev;//previous node in the list
-			Node* next;//next node in the list
+			public:
+				T element;
+				Node* parent = NULL;//previous node in the list
+				NodeList* next = NULL;//next node in the list
+				Node(){std::cout << "calling Node constructor" << std::endl;}
+				Node* parent() const;	//get parent
+				
 		};
 	public:
 		class Iterator
@@ -66,23 +67,25 @@ class NodeList
 		Node* trailer;//tail of list sentinel
 };
 
-template <typename E>
+template <typename T>
 class Position
 {
 	private:
-		typename NodeList<E>::Node* _element = NULL;
+		typename NodeList<T>::Node* _element;
 		Position* _parent = NULL;//previous node in the list
 		//Node* next;//next node in the list
-		NodeList< E > _children;
+		NodeList< Position > _children;
 	public:
-		Position(E elem){ _element = new typename NodeList<E>::Node; _element->element = elem; }
-		Position(E elem, Position* prnt){_element = new typename NodeList<E>::Node; _element->element = elem; _parent = prnt;}
-		E& operator *();	//get element
+		//Position(){_element = new typename NodeList<T>::Node;}
+		Position(T elem);
+		Position(T elem, Position* prnt);
+		T& operator *();	//get element
+		//T& operator <<();
 		Position* parent() const;	//get parent
-		NodeList< E > children() const;	//get node's children
+		NodeList< Position > children() const;	//get node's children
 		bool isRoot() const;	//root node?
 		bool isExternal() const;	//external node?
-		void addChild(E e);
+		void addChild(T e);
 		
 };
 
@@ -240,43 +243,71 @@ void NodeList<T>::printElements()
 	Iterator ending(end());
 	for(; it != ending; ++it)
 	{
-		std::cout << (*it) << ", ";
+		std::cout << *(*it) << ", ";
 	}
 	std::cout << std::endl;
 }
 
-template <typename E>
-E& Position<E>::operator*()
+template <typename T>
+T& Position<T>::operator*()
 {
 	return _element->element;
 }
 
-template <typename E>
-Position<E>* Position<E>::parent() const
+
+
+template <typename T>
+Position<T>* Position<T>::parent() const
 {
 	return _parent;
 }
 
-template <typename E>
+template <typename T>
 //template <>
-NodeList< E > Position<E>::children() const
+NodeList< Position<T> > Position<T>::children() const
 {
 	return _children;	
 }
 
-template <typename E>
-bool Position<E>::isRoot() const	//root node?
+template <typename T>
+bool Position<T>::isRoot() const	//root node?
 {
 	if(_parent == NULL)
 		return true;
 	return false;
 }
 
-template <typename E>
-void Position<E>::addChild(E e)
+template <typename T>
+void Position<T>::addChild(T e)
 {
-	Position<E> temp = Position<E>(e, this);
-	_children.insertFront(e);
+	Position<T> temp = Position<T>(e, this);
+	_children.insertFront(temp._element->element);
+}
+
+
+/*
+template <typename T>
+Position<T>::Position()
+{
+	_element = new typename NodeList<T>::Node; 
+}
+*/
+
+template <typename T>
+Position<T>::Position(T elem)
+{ 
+	std::cout << "creating Node" << std::endl;
+	_element = new typename NodeList<T>::Node; 
+	std::cout << "created Node" << std::endl;
+	_element->element = elem; 
+}
+
+template <typename T>
+Position<T>::Position(T elem, Position* prnt)
+{
+	_element = new typename NodeList<T>::Node; 
+	_element->element = elem; 
+	_parent = prnt;
 }
 
 #endif
