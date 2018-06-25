@@ -150,33 +150,6 @@ src/main.cxx.s:
 	$(MAKE) -f CMakeFiles/tree_main.dir/build.make CMakeFiles/tree_main.dir/src/main.cxx.s
 .PHONY : src/main.cxx.s
 
-src/tree_interface.o: src/tree_interface.cxx.o
-
-.PHONY : src/tree_interface.o
-
-# target to build an object file
-src/tree_interface.cxx.o:
-	$(MAKE) -f CMakeFiles/tree_main.dir/build.make CMakeFiles/tree_main.dir/src/tree_interface.cxx.o
-.PHONY : src/tree_interface.cxx.o
-
-src/tree_interface.i: src/tree_interface.cxx.i
-
-.PHONY : src/tree_interface.i
-
-# target to preprocess a source file
-src/tree_interface.cxx.i:
-	$(MAKE) -f CMakeFiles/tree_main.dir/build.make CMakeFiles/tree_main.dir/src/tree_interface.cxx.i
-.PHONY : src/tree_interface.cxx.i
-
-src/tree_interface.s: src/tree_interface.cxx.s
-
-.PHONY : src/tree_interface.s
-
-# target to generate assembly for a file
-src/tree_interface.cxx.s:
-	$(MAKE) -f CMakeFiles/tree_main.dir/build.make CMakeFiles/tree_main.dir/src/tree_interface.cxx.s
-.PHONY : src/tree_interface.cxx.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -189,9 +162,6 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/tree_interface.o"
-	@echo "... src/tree_interface.i"
-	@echo "... src/tree_interface.s"
 .PHONY : help
 
 

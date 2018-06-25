@@ -4,6 +4,3 @@
 CMakeFiles/tree_main.dir/src/main.cxx.o: src/main.cxx
 CMakeFiles/tree_main.dir/src/main.cxx.o: include/tree_interface.h
 
-CMakeFiles/tree_main.dir/src/tree_interface.cxx.o: src/tree_interface.cxx
-CMakeFiles/tree_main.dir/src/tree_interface.cxx.o: include/tree_interface.h
-

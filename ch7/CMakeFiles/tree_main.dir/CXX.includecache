@@ -10,10 +10,6 @@
 tree_interface.h
 /home/bilal/DataStructures/ch7/src/tree_interface.h
 
-/home/bilal/DataStructures/ch7/src/tree_interface.cxx
-tree_interface.h
-/home/bilal/DataStructures/ch7/src/tree_interface.h
-
 include/tree_interface.h
 iostream
 -
@@ -22,5 +18,11 @@ typeinfo
 exception
 -
 string
+-
+list
+-
+algorithm
+-
+iterator
 -
 

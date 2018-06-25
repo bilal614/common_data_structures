@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tree_main.dir/src/main.cxx.o"
-  "CMakeFiles/tree_main.dir/src/tree_interface.cxx.o"
   "tree_main.pdb"
   "tree_main"
 )
