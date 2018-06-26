@@ -10,21 +10,56 @@
 
 #define TREE_INTERFACE 
 
+template <typename T>
+class NodeList;
+/*
+template <typename T>
+class Node
+{
+	friend class NodeList<T>;
+	public:
+		T element;
+		Node* prev = NULL;//previous node in the list
+		Node* next = NULL;//next node in the list
+		//Node(){ prev = NULL; next = NULL;}
+		
+		
+};
+*/
+template <typename T>
+class Position
+{
+	friend class NodeList<T>;
+	public:
+		T element;
+		Position* prev = NULL;//previous node in the list
+		Position* next = NULL;//next node in the list
+	private:
+		Position* _parent;//previous node in the list
+		typename NodeList< T >::NodeList* _children = NULL;
+		
+		//using Node<T>::prev;
+		//using Node<T>::next;
+		
+	public:
+		Position(){prev = NULL; next = NULL;}
+		Position(T elem);
+		Position(T elem, Position* prnt);
+		T& operator *();	//get element
+		Position* parent() const;	//get parent
+		typename NodeList< T >::NodeList* children() const;	//get node's children
+		bool isRoot() const;	//root node?
+		bool isExternal() const;	//external node?
+		void addChild(T e);
+		
+		
+		friend std::ostream& operator<<(std::ostream& os, const Position& pos);  
+		
+};
 
 template <typename T>
 class NodeList
 {
-	public:
-		class Node
-		{
-			public:
-				T element;
-				Node* parent = NULL;//previous node in the list
-				NodeList* next = NULL;//next node in the list
-				Node(){std::cout << "calling Node constructor" << std::endl;}
-				Node* parent() const;	//get parent
-				
-		};
 	public:
 		class Iterator
 		{
@@ -41,8 +76,8 @@ class NodeList
 				friend class NodeList;
 			//private:
 			public:
-				Node* v;//pointer to node
-				Iterator(Node* u);//create from node
+				Position<T>* v;//pointer to node
+				Iterator(Position<T>* u);//create from node
 
 		};
 	public:
@@ -54,6 +89,7 @@ class NodeList
 		Iterator end() const;//(just beyond) last position
 		void insert(const Iterator& p, const T& e);//insert e before p
 		void insertFront(const T& e);//insert at front
+		void insertNodeFront(Position<T>* p);
 		void insertBack(const T& e);//insert at rear
 		void erase(const Iterator& p);//remove p
 		void eraseFront();//remove first
@@ -63,34 +99,23 @@ class NodeList
 
 	private: //data members
 		int n;//number of items
-		Node* header;//head of list sentinel
-		Node* trailer;//tail of list sentinel
+		Position<T>* header;//head of list sentinel
+		Position<T>* trailer;//tail of list sentinel
 };
 
-template <typename T>
-class Position
-{
-	private:
-		typename NodeList<T>::Node* _element;
-		Position* _parent = NULL;//previous node in the list
-		//Node* next;//next node in the list
-		NodeList< Position > _children;
-	public:
-		//Position(){_element = new typename NodeList<T>::Node;}
-		Position(T elem);
-		Position(T elem, Position* prnt);
-		T& operator *();	//get element
-		//T& operator <<();
-		Position* parent() const;	//get parent
-		NodeList< Position > children() const;	//get node's children
-		bool isRoot() const;	//root node?
-		bool isExternal() const;	//external node?
-		void addChild(T e);
-		
-};
+
+
 
 template <typename T>
-NodeList<T>::Iterator::Iterator(Node* u)
+std::ostream& operator<<(std::ostream& os, const Position<T>& pos)  
+{  
+	os << pos->_element->element;  
+	return os;  
+}
+
+
+template <typename T>
+NodeList<T>::Iterator::Iterator(Position<T>* u)
 {
 	v = u;	
 }
@@ -156,8 +181,8 @@ template <typename T>
 NodeList<T>::NodeList()
 {
 	n = 0;
-	header = new Node;
-	trailer = new Node;
+	header = new Position<T>;
+	trailer = new Position<T>;
 	header->next = trailer;
 	trailer->prev = header;
 }
@@ -188,12 +213,31 @@ typename NodeList<T>::Iterator NodeList<T>::end() const//begin position is the f
 	return (Iterator(trailer));
 }
 
+
+template <typename T>//insert e before p
+void NodeList<T>::insertNodeFront(Position<T>* p)
+{
+	/*
+	Position<T>* old_first = header->next; 
+	Position<T>* head_ptr = old_first->prev;//p's predecessor
+	p->next = old_first; old_first->prev = p;
+	p->prev = head_ptr; head_ptr->next = p;
+	n++;
+	*/
+	Position<T>* w = (this->begin()).v;//p's node
+	Position<T>* u = w->prev;//p's predecessor
+	p->next = w;w->prev = p;//link in v before w
+	p->prev = u;u->next = p;
+	n++;
+}
+
+
 template <typename T>//insert e before p
 void NodeList<T>::insert(const Iterator& p, const T& e)
 {
-	Node* w = p.v;//p's node
-	Node* u = w->prev;//p's predecessor
-	Node* v = new Node;//new Node to insert
+	Position<T>* w = p.v;//p's node
+	Position<T>* u = w->prev;//p's predecessor
+	Position<T>* v = new Position<T>;//new Node to insert
 	v->element = e;
 	v->next = w;w->prev = v;//link in v before w
 	v->prev = u;u->next = v;
@@ -215,9 +259,9 @@ void NodeList<T>::insertBack(const T& e)
 template <typename T>//remove p
 void NodeList<T>::erase(const Iterator& p)
 {
-	Node* v = p.v; //Node to remove
-	Node* w = v->next;//successor
-	Node* u = v->prev; //predecessor
+	Position<T>* v = p.v; //Node to remove
+	Position<T>* w = v->next;//successor
+	Position<T>* u = v->prev; //predecessor
 	w->prev = u; 
 	u->next = w;
 	delete v;
@@ -243,7 +287,7 @@ void NodeList<T>::printElements()
 	Iterator ending(end());
 	for(; it != ending; ++it)
 	{
-		std::cout << *(*it) << ", ";
+		std::cout << (*it) << ", ";
 	}
 	std::cout << std::endl;
 }
@@ -251,9 +295,8 @@ void NodeList<T>::printElements()
 template <typename T>
 T& Position<T>::operator*()
 {
-	return _element->element;
+	return this->element;
 }
-
 
 
 template <typename T>
@@ -264,8 +307,9 @@ Position<T>* Position<T>::parent() const
 
 template <typename T>
 //template <>
-NodeList< Position<T> > Position<T>::children() const
+typename NodeList< T >::NodeList* Position<T>::children() const
 {
+	std::cout << "returning children NodeList"  << std::endl;
 	return _children;	
 }
 
@@ -280,34 +324,37 @@ bool Position<T>::isRoot() const	//root node?
 template <typename T>
 void Position<T>::addChild(T e)
 {
-	Position<T> temp = Position<T>(e, this);
-	_children.insertFront(temp._element->element);
+	Position<T>* temp = new Position<T>(e, this);
+	//_children->insertNodeFront(static_cast<Node<T>*>(temp));
+	_children->insertNodeFront(temp);
+	//_children->insertFront(temp);
 }
 
-
-/*
-template <typename T>
-Position<T>::Position()
-{
-	_element = new typename NodeList<T>::Node; 
-}
-*/
 
 template <typename T>
 Position<T>::Position(T elem)
 { 
 	std::cout << "creating Node" << std::endl;
-	_element = new typename NodeList<T>::Node; 
+	_children = new typename NodeList<T>::NodeList();
+	this->element = elem; 
 	std::cout << "created Node" << std::endl;
-	_element->element = elem; 
+	this->prev = NULL;
+	this->next = NULL;
+	_parent = NULL;
 }
 
 template <typename T>
 Position<T>::Position(T elem, Position* prnt)
 {
-	_element = new typename NodeList<T>::Node; 
-	_element->element = elem; 
+	if(_children == NULL)
+	{
+		_children = new typename NodeList<T>::NodeList();
+	}
+	//std::cout << "parent of elem( " << elem << " ): " << prnt->element << std::endl; 
+	this->element = elem; 
+	//std::cout << "element initialized " << std::endl; 
 	_parent = prnt;
+	//std::cout << "parent pointer set" << std::endl; 
 }
 
 #endif
