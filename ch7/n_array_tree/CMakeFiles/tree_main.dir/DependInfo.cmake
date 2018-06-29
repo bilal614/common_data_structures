@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/bilal/DataStructures/ch7/src/main.cxx" "/home/bilal/DataStructures/ch7/CMakeFiles/tree_main.dir/src/main.cxx.o"
+  "/home/bilal/DataStructures/ch7/n_array_tree/src/main.cxx" "/home/bilal/DataStructures/ch7/n_array_tree/CMakeFiles/tree_main.dir/src/main.cxx.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

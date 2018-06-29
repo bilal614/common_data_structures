@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.8)
 
 
 # This is the name of the project
-PROJECT(tree_data_structure C CXX)
+PROJECT(bin_tree_data_structure C CXX)
 
 #Bring the headers, such as Student.h into the project
 INCLUDE_DIRECTORIES(include)
@@ -13,5 +13,4 @@ INCLUDE_DIRECTORIES(include)
 #However, the file(GLOB...) allows for wildcard additions:
 file(GLOB SOURCES "src/*.cxx")
 
-
-ADD_EXECUTABLE(tree_main  ${SOURCES})
+ADD_EXECUTABLE(bin_tree_main  ${SOURCES})

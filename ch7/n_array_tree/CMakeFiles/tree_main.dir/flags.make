@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/bilal/DataStructures/ch7/include 
+CXX_INCLUDES = -I/home/bilal/DataStructures/ch7/n_array_tree/include 
 

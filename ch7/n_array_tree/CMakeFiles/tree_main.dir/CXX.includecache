@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/bilal/DataStructures/ch7/src/main.cxx
+/home/bilal/DataStructures/ch7/n_array_tree/src/main.cxx
 tree_interface.h
-/home/bilal/DataStructures/ch7/src/tree_interface.h
+/home/bilal/DataStructures/ch7/n_array_tree/src/tree_interface.h
 
 include/tree_interface.h
 iostream
