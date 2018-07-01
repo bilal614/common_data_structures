@@ -16,13 +16,15 @@ class LinkedBinaryTree
 		int size() const;
 		bool empty() const;
 		Position<T>* root() const;
-		PositionList<T> positions() const;
+		PositionList<T> positions(bool pre_post = true) const;
 		void addRoot(T e);
 		void expandExternal(Position<T>* p, T left_element, T right_element);
 		Position<T>& removeAboveExternal(const Position<T>& p);
-
+		void inorder(Position<T>* v, PositionList<T>& pl) const;
 	protected:
 		void preorder(Position<T>* v, PositionList<T>& pl) const;
+		void postorder(Position<T>* v, PositionList<T>& pl) const;
+		
 };
 
 
@@ -90,10 +92,13 @@ Position<T>& LinkedBinaryTree<T>::removeAboveExternal(const Position<T>& p)
 }
 
 template <typename T>
-PositionList<T> LinkedBinaryTree<T>::positions() const
+PositionList<T> LinkedBinaryTree<T>::positions(bool pre_post) const
 {
 	PositionList<T> pl;
-	preorder(_root, pl);
+	if(pre_post)
+		preorder(_root, pl);
+	else
+		postorder(_root, pl);
 	return PositionList<T>(pl);
 }
 
@@ -119,5 +124,37 @@ void LinkedBinaryTree<T>::preorder(Position<T>* v, PositionList<T>& pl) const
 		preorder(v->right(), pl);
 	}
 }
+
+template <typename T>
+void LinkedBinaryTree<T>::postorder(Position<T>* v, PositionList<T>& pl) const
+{
+	if(v->left() != nullptr)
+	{	
+		postorder(v->left(), pl);
+	}
+	if(v->right() != nullptr)
+	{
+		postorder(v->right(), pl);
+	}
+	pl.push_back(Position<T>(v));
+	std::cout << "v->element: " << *(*v) << std::endl;
+}
+
+template <typename T>
+void LinkedBinaryTree<T>::inorder(Position<T>* v, PositionList<T>& pl) const
+{
+	if(v->left() != nullptr)
+	{	
+		inorder(v->left(), pl);
+	}
+	pl.push_back(Position<T>(v));
+	std::cout << "v->element: " << *(*v) << std::endl;
+	if(v->right() != nullptr)
+	{
+		inorder(v->right(), pl);
+	}
+}
+
+
 
 #endif

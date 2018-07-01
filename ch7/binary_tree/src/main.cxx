@@ -18,8 +18,17 @@ int main(int argc, char * argv[])
 	bin_tree.expandExternal(new Position<int>(201));
 	bin_tree.expandExternal(new Position<int>(202));
 	*/
-	auto pos_list = bin_tree.positions();
-	std::cout << "size of pos_list: " << pos_list.size() << std::endl;
+	std::cout << "Pre-order traversal: " << std::endl;
+	auto pre_list = bin_tree.positions();
+	std::cout << "Post-order traversal: " << std::endl;
+	auto post_list = bin_tree.positions(false);
+	std::cout << "size of pre_list: " << pre_list.size() << std::endl;
+	std::cout << "size of post_list: " << post_list.size() << std::endl;
 	std::cout << "size of bin_tree: " << bin_tree.size() << std::endl; 
+	
+	PositionList<int> pl;
+	std::cout << "In-order traversal: " << std::endl;
+	bin_tree.inorder(bin_root, pl);
+	
 	return 0;
 }

@@ -94,7 +94,7 @@ bool Position<T>::isRoot() const
 template <typename T>
 bool Position<T>::isExternal() const
 {
-	return (Node< T, Position<T> >::_left == nullptr && Node< T, Position<T> >::_right == nullptr);
+	return ((Node< T, Position<T> >::_left == nullptr) && (Node< T, Position<T> >::_right == nullptr));
 }
 
 
