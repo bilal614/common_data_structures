@@ -28,6 +28,29 @@ class LinkedBinaryTree
 };
 
 
+template <typename T, typename R>
+class EulerTour{
+	protected:
+		struct Result{
+				R leftResult;
+				R rightResult;
+				R finalResult;
+			};
+	protected:
+		const LinkedBinaryTree<T>* tree;
+		int eulerTour(const Position<T>& p) const;
+	public:
+		void initialize(const LinkedBinaryTree<T>& t){tree = &t;}
+	
+	protected:
+			virtual void visitExternal(const Position<T>& p, Result& r) const{}
+			virtual void visitLeft(const Position<T>& p, Result& r) const {}
+			virtual void visitBelow(const Position<T>& p, Result& r) const {}
+			virtual void visitRight(const Position<T>& p, Result& r) const {} 
+			Result initResult() const {return Result();}
+			int result(const Result& r) const { return r.finalResult; }
+};
+
 template <typename T>
 LinkedBinaryTree<T>::LinkedBinaryTree(): _root(nullptr), n(0)
 {
