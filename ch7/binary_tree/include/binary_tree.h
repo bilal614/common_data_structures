@@ -2,7 +2,7 @@
 
 #include "bin_tree_position.h"
 
-#define BINARY TREE
+#define BINARY_TREE
 
 template <typename T>
 class LinkedBinaryTree
@@ -50,6 +50,26 @@ class EulerTour{
 			Result initResult() const {return Result();}
 			int result(const Result& r) const { return r.finalResult; }
 };
+
+template < typename T, typename R >
+int EulerTour< T, R >::eulerTour(const Position<T>& p) const
+{
+	Result r = initResult();
+	
+	if(p.isExternal())
+	{
+		visitExternal(p, r);
+	}
+	else
+	{
+		visitLeft(p, r);
+		r.leftResult = eulerTour(p.left());
+		visitBelow(p, r);
+		r.rightResult = eulerTour(p.right());
+		visitRight(p, r);
+	}
+	return result(r);
+}
 
 template <typename T>
 LinkedBinaryTree<T>::LinkedBinaryTree(): _root(nullptr), n(0)
