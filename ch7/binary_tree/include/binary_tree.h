@@ -38,21 +38,21 @@ class EulerTour{
 			};
 	protected:
 		const LinkedBinaryTree<T>* tree;
-		int eulerTour(const Position<T>& p) const;
+		
 	public:
 		void initialize(const LinkedBinaryTree<T>& t){tree = &t;}
-	
+		int eulerTour(Position<T>& p) const;
 	protected:
-			virtual void visitExternal(const Position<T>& p, Result& r) const{}
-			virtual void visitLeft(const Position<T>& p, Result& r) const {}
-			virtual void visitBelow(const Position<T>& p, Result& r) const {}
-			virtual void visitRight(const Position<T>& p, Result& r) const {} 
+			virtual void visitExternal(Position<T>& p, Result& r) const{}
+			virtual void visitLeft(Position<T>& p, Result& r) const {}
+			virtual void visitBelow(Position<T>& p, Result& r) const {}
+			virtual void visitRight(Position<T>& p, Result& r) const {} 
 			Result initResult() const {return Result();}
 			int result(const Result& r) const { return r.finalResult; }
 };
 
 template < typename T, typename R >
-int EulerTour< T, R >::eulerTour(const Position<T>& p) const
+int EulerTour< T, R >::eulerTour(Position<T>& p) const
 {
 	Result r = initResult();
 	
@@ -63,9 +63,9 @@ int EulerTour< T, R >::eulerTour(const Position<T>& p) const
 	else
 	{
 		visitLeft(p, r);
-		r.leftResult = eulerTour(p.left());
+		r.leftResult = eulerTour(*(p.left()));
 		visitBelow(p, r);
-		r.rightResult = eulerTour(p.right());
+		r.rightResult = eulerTour(*(p.right()));
 		visitRight(p, r);
 	}
 	return result(r);

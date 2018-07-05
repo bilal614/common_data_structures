@@ -5,31 +5,31 @@
 #define EULER_TOUR
 
 template < typename T, typename R >
-class PrintExpressionTour: public EulerTour< E,R >
+class PrintExpressionTour: public EulerTour< T,R >
 {
 	protected:
-		typedef typename EulerTour< E, R >::LinkedBinaryTree BinaryTree;
-		typedef typename EulerTour< E, R >::Position Position;
-		typedef typename EulerTour< E, R >::Result Result;
+		typedef LinkedBinaryTree<T> BinaryTree;
+		typedef Position<T> EulerPosition;
+		typedef typename EulerTour< T, R >::Result Result;
 	public:
-		void execute(const BinaryTree& T){initialize(T); std::cout << "Expression: " << eulerTour(T.root()) << "\n";}
+		void execute(const BinaryTree& t){initialize(t); std::cout << "Expression: " << eulerTour(t.root()) << "\n";}
 	protected:
-		virtual void visitExternal(const Position& p, Result& r) const
+		virtual void visitExternal(EulerPosition& p, Result& r) const
 		{
-			std::cout << *p;
+			std::cout << (*p);
 		}
 		
-		virtual void visitBelow(const Position& p, Result& r) const
+		virtual void visitBelow(EulerPosition& p, Result& r) const
 		{
-			std::cout << *p;
+			std::cout << (*p);
 		}
 		
-		virtual void visitLeft(const Position& p, Result& r) const
+		virtual void visitLeft(EulerPosition& p, Result& r) const
 		{
 			std::cout << "(";
 		}
 		
-		virtual void visitRight(const Position& p, Result& r) const
+		virtual void visitRight(EulerPosition& p, Result& r) const
 		{
 			std::cout << ")";
 		}

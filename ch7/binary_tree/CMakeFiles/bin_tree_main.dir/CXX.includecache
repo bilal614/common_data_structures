@@ -7,10 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/bilal/DataStructures/ch7/binary_tree/src/main.cxx
-bin_tree_position.h
-/home/bilal/DataStructures/ch7/binary_tree/src/bin_tree_position.h
-binary_tree.h
-/home/bilal/DataStructures/ch7/binary_tree/src/binary_tree.h
+euler_tour.h
+/home/bilal/DataStructures/ch7/binary_tree/src/euler_tour.h
 
 include/bin_tree_position.h
 iostream
@@ -31,4 +29,8 @@ iterator
 include/binary_tree.h
 bin_tree_position.h
 include/bin_tree_position.h
+
+include/euler_tour.h
+binary_tree.h
+include/binary_tree.h
 
