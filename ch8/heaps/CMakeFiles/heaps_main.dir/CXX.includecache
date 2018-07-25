@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch8/heaps/src/main.cxx
+binary_tree.h
+/home/bilal/DataStructures/ch8/heaps/src/binary_tree.h
+
+include/bin_tree_position.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+list
+-
+algorithm
+-
+iterator
+-
+
+include/binary_tree.h
+bin_tree_position.h
+include/bin_tree_position.h
+cmath
+-
+deque
+-
+

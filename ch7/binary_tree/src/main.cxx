@@ -4,7 +4,7 @@
 
 int main(int argc, char * argv[])
 {
-	/*
+	
 	LinkedBinaryTree<int> bin_tree;
 	
 	bin_tree.addRoot(0);
@@ -32,7 +32,7 @@ int main(int argc, char * argv[])
 	std::cout << "In-order traversal: " << std::endl;
 	bin_tree.inorder(bin_root, pl);
 	
-	*/
+	/*
 	LinkedBinaryTree< std::string > bin_tree;
 	
 	bin_tree.addRoot("*");
@@ -49,6 +49,6 @@ int main(int argc, char * argv[])
 	PrintExpressionTour< std::string , int > exprTour;
 	exprTour.eulerTour((*bin_root));
 	std::cout << std::endl;
-	
+	*/
 	return 0;
 }

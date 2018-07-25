@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/bin_tree_main.dir/src/main.cxx.o  -o bin_tree_main -rdynamic 

@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/heaps_main.dir/src/main.cxx.o  -o heaps_main -rdynamic 

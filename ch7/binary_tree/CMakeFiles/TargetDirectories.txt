@@ -1,3 +1,0 @@
-/home/bilal/DataStructures/ch7/binary_tree/CMakeFiles/edit_cache.dir
-/home/bilal/DataStructures/ch7/binary_tree/CMakeFiles/rebuild_cache.dir
-/home/bilal/DataStructures/ch7/binary_tree/CMakeFiles/bin_tree_main.dir
