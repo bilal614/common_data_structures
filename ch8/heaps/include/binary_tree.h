@@ -34,10 +34,10 @@ class CompleteTree
 		bool hasLeft(const Position<T>& p) const;//does node have left child?
 		bool hasRight(const Position<T>& p) const;//does node have right child?
 		bool isRoot(const Position<T>& p) const; //is this the root
-		Position<T> last(); //get last node
+		Position<T>* last(); //get last node
 		void addLast(const T& t);
 		void removeLast();
-		void swap(const Position<T>& p, const Position<T>& q);
+		void swap(Position<T>& p, Position<T>& q);
 		
 	protected:
 		void inorder(Position<T>* v, PositionList<T>& pl) const;
@@ -59,6 +59,10 @@ void CompleteTree<T>::remove()
 	--n;
 	delete w;
 }
+
+template <typename T>
+void CompleteTree<T>::removeLast()
+{remove();}
 
 template <typename T>
 void CompleteTree<T>::add(T t)
@@ -97,6 +101,11 @@ void CompleteTree<T>::add(T t)
 	}
 }
 
+template <typename T>
+void CompleteTree<T>::addLast(const T& t)
+{
+	add(t);
+}
 
 template <typename T>
 void CompleteTree<T>::updateLevel()
@@ -116,9 +125,9 @@ void CompleteTree<T>::printQ()
 }
 
 template <typename T>
-Position<T> CompleteTree<T>::last()
+Position<T>* CompleteTree<T>::last()
 {
-	return (*(*_last));
+	return (*_last);
 }
 
 template <typename T>
@@ -249,9 +258,17 @@ void CompleteTree<T>::inorder(Position<T>* v, PositionList<T>& pl) const
 	}
 }
 
-void swap(const Position<T>& p, const Position<T>& q)
+template <typename T>
+void CompleteTree<T>::swap(Position<T>& p, Position<T>& q)
 {
-	T e = *q; *q = *p; *p = e;
+	T temp = *q;
+	std::cout << "temp: " << temp << std::endl;
+	T p_val = *p;
+	std::cout << "p_val: " << p_val << std::endl;
+	q.setElement(p_val); 
+	//*q = *p; 
+	//*p = e;
+	p.setElement(temp);
 }
 
 #endif

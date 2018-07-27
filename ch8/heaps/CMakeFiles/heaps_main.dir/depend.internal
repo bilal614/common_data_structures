@@ -5,3 +5,4 @@ CMakeFiles/heaps_main.dir/src/main.cxx.o
  /home/bilal/DataStructures/ch8/heaps/src/main.cxx
  include/bin_tree_position.h
  include/binary_tree.h
+ include/heap_priority_queue.h

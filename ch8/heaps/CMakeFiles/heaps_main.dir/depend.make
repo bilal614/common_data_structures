@@ -4,4 +4,5 @@
 CMakeFiles/heaps_main.dir/src/main.cxx.o: src/main.cxx
 CMakeFiles/heaps_main.dir/src/main.cxx.o: include/bin_tree_position.h
 CMakeFiles/heaps_main.dir/src/main.cxx.o: include/binary_tree.h
+CMakeFiles/heaps_main.dir/src/main.cxx.o: include/heap_priority_queue.h
 

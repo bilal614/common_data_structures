@@ -7,8 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/bilal/DataStructures/ch8/heaps/src/main.cxx
-binary_tree.h
-/home/bilal/DataStructures/ch8/heaps/src/binary_tree.h
+heap_priority_queue.h
+/home/bilal/DataStructures/ch8/heaps/src/heap_priority_queue.h
 
 include/bin_tree_position.h
 iostream
@@ -33,4 +33,8 @@ cmath
 -
 deque
 -
+
+include/heap_priority_queue.h
+binary_tree.h
+include/binary_tree.h
 
