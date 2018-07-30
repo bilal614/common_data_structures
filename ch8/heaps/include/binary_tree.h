@@ -13,7 +13,7 @@ class CompleteTree
 		Position<T>* _root; //pointer to root
 		int n;//number of nodes
 		std::deque< Position<T>* > Q;
-		typename std::deque< Position<T>* >::iterator _last;
+		typename std::deque< Position<T>* >::iterator _last_unfilled;
 		int _level; //depth of tree
 		void updateLevel();
 		void addRoot(T e);
@@ -22,7 +22,7 @@ class CompleteTree
 		CompleteTree();
 		int size() const;
 		bool empty() const;
-		Position<T> root(); //get root position
+		Position<T>* root(); //get root position
 		PositionList<T> positions(bool pre_post = true) const;
 		void add(T t);
 		void remove();
@@ -51,9 +51,9 @@ void CompleteTree<T>::remove()
 	if(Q.empty()) return;
 		
 	Position<T>* w = Q.back();
-	if(!hasLeft(*_last) && !hasRight(*_last) && (*_last) != _root)
+	if(!hasLeft(*_last_unfilled) && !hasRight(*_last_unfilled) && (*_last_unfilled) != _root)
 	{
-		--_last;
+		--_last_unfilled;
 	}
 	Q.pop_back();
 	--n;
@@ -72,30 +72,30 @@ void CompleteTree<T>::add(T t)
 		addRoot(t);
 		++_level;
 		Q.push_back(_root);
-		_last = Q.begin();
+		_last_unfilled = Q.begin();
 	}
 	else
 	{
 		Position<T>* temp = new Position<T>();
 		temp->setElement(t);
 		
-		if(!hasLeft(*_last))
+		if(!hasLeft(*_last_unfilled))
 		{
-			(*_last)->setLeft(temp);
-			temp->setParent(*_last);
+			(*_last_unfilled)->setLeft(temp);
+			temp->setParent(*_last_unfilled);
 			Q.push_back(temp);	
 			++n;	
 			updateLevel();
 			return;		
 		}
-		else if(hasLeft(*_last) && !hasRight(*_last))
+		else if(hasLeft(*_last_unfilled) && !hasRight(*_last_unfilled))
 		{
-			(*_last)->setRight(temp);
-			temp->setParent(*_last);	
+			(*_last_unfilled)->setRight(temp);
+			temp->setParent(*_last_unfilled);	
 			Q.push_back(temp);
 			++n;
 			updateLevel();
-			++_last;
+			++_last_unfilled;
 			return;
 		} 
 	}
@@ -127,7 +127,7 @@ void CompleteTree<T>::printQ()
 template <typename T>
 Position<T>* CompleteTree<T>::last()
 {
-	return (*_last);
+	return Q.back();
 }
 
 template <typename T>
@@ -169,13 +169,13 @@ bool CompleteTree<T>::hasRight(const Position<T>& p) const
 template <typename T>
 bool CompleteTree<T>::isRoot(const Position<T>& p) const
 {
-	return (*p.parent() != nullptr ? true : false);
+	return (p.parent() == nullptr ? true : false);
 }
 
 template <typename T>
-Position<T> CompleteTree<T>::root()
+Position<T>* CompleteTree<T>::root()
 {
-	return (*_root);
+	return (_root);
 }
 
 template <typename T>
@@ -262,9 +262,9 @@ template <typename T>
 void CompleteTree<T>::swap(Position<T>& p, Position<T>& q)
 {
 	T temp = *q;
-	std::cout << "temp: " << temp << std::endl;
+	//std::cout << "temp: " << temp << std::endl;
 	T p_val = *p;
-	std::cout << "p_val: " << p_val << std::endl;
+	//std::cout << "p_val: " << p_val << std::endl;
 	q.setElement(p_val); 
 	//*q = *p; 
 	//*p = e;
