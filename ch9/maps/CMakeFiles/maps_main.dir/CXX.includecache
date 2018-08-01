@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch9/maps/src/main.cxx
+maps.h
+/home/bilal/DataStructures/ch9/maps/src/maps.h
+
+include/maps.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+list
+-
+
