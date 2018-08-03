@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch9/hash_function_examples/src/main.cxx
+cyclic_shift_hash.h
+/home/bilal/DataStructures/ch9/hash_function_examples/src/cyclic_shift_hash.h
+string
+-
+cstring
+-
+
+include/cyclic_shift_hash.h
+iostream
+-
+cmath
+-
+
