@@ -16,4 +16,4 @@ INCLUDE_DIRECTORIES(include)
 #However, the file(GLOB...) allows for wildcard additions:
 file(GLOB SOURCES "src/*.cxx")
 
-ADD_EXECUTABLE(hash_maps_main  ${SOURCES})
+ADD_EXECUTABLE(hash_maps_main ${SOURCES})
