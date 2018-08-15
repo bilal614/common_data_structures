@@ -1,6 +1,10 @@
 #ifndef HASH_MAP
 
-#include "maps.h"
+#include <iostream>
+#include <cmath> 
+#include <string>
+#include <list>
+#include <vector>
 
 #define HASH_MAP
 
@@ -8,22 +12,22 @@
 template <typename K, typename V, typename H>
 class HashMap
 {
-	template <typename T, typename U> 
+	//template <typename K, typename V> 
 	class Entry
 	{
 		public:
-			Entry(const T& k = T(), const U& v = U()): _key(k), _value(v){}
-			const T& key(){ return _key;}
-			const U& value(){ return _value;}
-			void setKey(const T& k){ _key = k;}
-			void setValue(const U& v){ _value = v;}
+			Entry(const K& k = K(), const V& v = V()): _key(k), _value(v){}
+			const K& key(){ return _key;}
+			const V& value(){ return _value;}
+			void setKey(const K& k){ _key = k;}
+			void setValue(const V& v){ _value = v;}
 		private:
-			T _key;
-			U _value;
+			K _key;
+			V _value;
 	};
 
 	public:
-		typedef Entry<const K,V> Entry;
+		//typedef Entry<const K,V> Entry;
 		class Iterator;
 	public:
 		HashMap(int capcaity = 100);
@@ -35,6 +39,7 @@ class HashMap
 		void erase(Iterator& p);
 		Iterator begin();
 		Iterator end();
+		void printHashMap();
 	protected:
 		typedef std::list<Entry> Bucket;
 		typedef std::vector<Bucket> BktArray;
@@ -56,10 +61,13 @@ class HashMap
 				EItor ent;
 				BItor bkt;
 				const BktArray* ba;
-			publci:
+			public:
 				Iterator(const BktArray& a, const BItor& b, const EItor& q = EItor()):ent(q), bkt(b), ba(&a) {} 
 				Entry& operator*() const;
 				bool operator==(Iterator& p) const;
+				
+				bool operator!=(Iterator& p) const;
+				
 				Iterator& operator++();
 				friend class HashMap;
 		};		
@@ -79,6 +87,15 @@ bool HashMap<K,V,H>::Iterator::operator==(HashMap<K,V,H>::Iterator& p) const
 	else if(bkt == ba->end()) return true;
 	else return (ent == p.ent);
 }
+
+template <typename K, typename V, typename H>
+bool HashMap<K,V,H>::Iterator::operator!=(HashMap<K,V,H>::Iterator& p) const
+{
+	if(ba != p.ba || bkt != p.bkt) return true;
+	else if(bkt == ba->end()) return false;
+	else return (ent != p.ent);
+}
+
 
 template <typename K, typename V, typename H>
 typename HashMap<K,V,H>::Iterator& HashMap<K,V,H>::Iterator::operator++()
@@ -123,7 +140,7 @@ int HashMap<K,V,H>::size() const
 }
 
 template <typename K, typename V, typename H>
-bool HashMap<K,V,H>::empty()
+bool HashMap<K,V,H>::empty() const
 {
 	return (size() == 0);
 }
@@ -154,8 +171,52 @@ typename HashMap<K,V,H>::Iterator HashMap<K,V,H>::inserter(const Iterator& p, co
 {
 	EItor ins = p.bkt->insert(p.ent, e);//insert before p	
 	n++;
-	return HashMap<K,V,H>::Iterator(B, p.bkt, inst);
+	return HashMap<K,V,H>::Iterator(B, p.bkt, ins);
 }
 
+
+template <typename K, typename V, typename H>
+typename HashMap<K,V,H>::Iterator HashMap<K,V,H>::put(const K& k, const V& v)
+{
+	HashMap<K,V,H>::Iterator p = finder(k);
+	if(endOfBkt(p))
+		return inserter(p, HashMap<K,V,H>::Entry(k, v));
+	else
+		p.ent->setValue(v);
+	return p;
+}
+
+template <typename K, typename V, typename H>
+void HashMap<K,V,H>::eraser(const HashMap<K,V,H>::Iterator& p)
+{
+	p.bkt->erase(p.ent);
+	n--;
+}
+
+template <typename K, typename V, typename H>
+void HashMap<K,V,H>::erase(const K& k)
+{
+	HashMap<K,V,H>::Iterator p = finder(k);
+	if(endOfBkt(p))
+		return;
+	eraser(p);	
+}
+
+template <typename K, typename V, typename H>
+void HashMap<K,V,H>::erase(Iterator& p)
+{
+	eraser(p);
+}
+
+template <typename K, typename V, typename H>
+void HashMap<K,V,H>::printHashMap()
+{
+	auto it = begin();
+	auto ending = end();
+	for(; it != ending; ++it)
+	{
+		std::cout << std::dec << (*it).key() << ": " << (*it).value() << std::endl;
+	}
+}
 
 #endif
