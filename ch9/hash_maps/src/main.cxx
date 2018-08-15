@@ -16,7 +16,7 @@ class HashCode
 
 int main(int argc, char * argv[])
 {
-	HashMap<int, std::string, HashCode> h_map;
+	HashMap<int, std::string, HashCode> h_map(10);
 	h_map.put(15, "Python");
 	h_map.put(10, "C++");
 	h_map.put(21, "Java");

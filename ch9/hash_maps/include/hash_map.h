@@ -150,6 +150,7 @@ typename HashMap<K,V,H>::Iterator HashMap<K,V,H>::finder(const K& k)
 {
 	int i = hash(k) % B.size(); //get hash index i
 	BItor bkt = B.begin() + i; //the ith bucket
+	std::cout << std::dec << "Bucket i: " << i << std::endl;
 	HashMap<K,V,H>::Iterator p(B, bkt, bkt->begin()); //start of the bucket
 	while(!endOfBkt(p) && (*p).key() == k)
 		nextEntry(p);
@@ -182,8 +183,21 @@ typename HashMap<K,V,H>::Iterator HashMap<K,V,H>::put(const K& k, const V& v)
 	if(endOfBkt(p))
 		return inserter(p, HashMap<K,V,H>::Entry(k, v));
 	else
+	{
+		/*
 		p.ent->setValue(v);
-	return p;
+		return p;
+		*/
+		if(p.ent->key() == k)
+		{
+			p.ent->setValue(v);
+			return p;
+		}
+		else
+		{
+			return inserter(p, HashMap<K,V,H>::Entry(k, v));
+		}
+	}
 }
 
 template <typename K, typename V, typename H>
