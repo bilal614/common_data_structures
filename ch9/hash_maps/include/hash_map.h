@@ -13,18 +13,19 @@ template <typename K, typename V, typename H>
 class HashMap
 {
 	//template <typename K, typename V> 
-	class Entry
-	{
-		public:
-			Entry(const K& k = K(), const V& v = V()): _key(k), _value(v){}
-			const K& key(){ return _key;}
-			const V& value(){ return _value;}
-			void setKey(const K& k){ _key = k;}
-			void setValue(const V& v){ _value = v;}
-		private:
-			K _key;
-			V _value;
-	};
+	public:
+		class Entry
+		{
+			public:
+				Entry(const K& k = K(), const V& v = V()): _key(k), _value(v){}
+				const K& key(){ return _key;}
+				const V& value(){ return _value;}
+				void setKey(const K& k){ _key = k;}
+				void setValue(const V& v){ _value = v;}
+			private:
+				K _key;
+				V _value;
+		};
 
 	public:
 		//typedef Entry<const K,V> Entry;
@@ -150,9 +151,9 @@ typename HashMap<K,V,H>::Iterator HashMap<K,V,H>::finder(const K& k)
 {
 	int i = hash(k) % B.size(); //get hash index i
 	BItor bkt = B.begin() + i; //the ith bucket
-	std::cout << std::dec << "Bucket i: " << i << std::endl;
+	//std::cout << std::dec << "Bucket i: " << i << std::endl;
 	HashMap<K,V,H>::Iterator p(B, bkt, bkt->begin()); //start of the bucket
-	while(!endOfBkt(p) && (*p).key() == k)
+	while(!endOfBkt(p) && (*p).key() != k)
 		nextEntry(p);
 	return p;
 }

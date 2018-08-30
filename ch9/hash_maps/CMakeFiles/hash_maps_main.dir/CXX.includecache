@@ -9,6 +9,12 @@
 /home/bilal/DataStructures/ch9/hash_maps/src/main.cxx
 hash_map.h
 /home/bilal/DataStructures/ch9/hash_maps/src/hash_map.h
+hash_dict.h
+/home/bilal/DataStructures/ch9/hash_maps/src/hash_dict.h
+
+include/hash_dict.h
+hash_map.h
+include/hash_map.h
 
 include/hash_map.h
 iostream
