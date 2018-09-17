@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/bin_srch_tree_main.dir/src/main.cxx.o  -o bin_srch_tree_main -rdynamic 
