@@ -7,14 +7,10 @@
 #IncludeRegexTransform: 
 
 /home/bilal/DataStructures/ch10/binary_search_tree/src/main.cxx
-bin_srch_tree.h
-/home/bilal/DataStructures/ch10/binary_search_tree/src/bin_srch_tree.h
-
-include/bin_srch_tree.h
 binary_tree.h
-include/binary_tree.h
+/home/bilal/DataStructures/ch10/binary_search_tree/src/binary_tree.h
 
-include/bin_tree_position.h
+include/binary_tree.h
 iostream
 -
 typeinfo
@@ -29,8 +25,4 @@ algorithm
 -
 iterator
 -
-
-include/binary_tree.h
-bin_tree_position.h
-include/bin_tree_position.h
 

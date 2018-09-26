@@ -1,81 +1,90 @@
-#ifndef BINARY_TREE
+#ifndef BIN_SRCH_TREE
 
-#include "bin_tree_position.h"
 
-#define BINARY_TREE
+#include <iostream>
+#include <typeinfo>
+#include <exception>
+#include <string>
+#include <list>
+#include <algorithm>    // std::for_each
+#include <iterator>
 
-template <typename T>
+
+#define BIN_SRCH_TREE
+
+template <typename _type> class Position;
+template <typename _type> class LinkedBinaryTree;
+ 
+
+
+template <typename R>
 class LinkedBinaryTree
 {
+	protected:
+		struct Node
+		{
+			R element;
+			Node* _parent;
+			Node* _left;
+			Node* _right;
+			Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}	
+			Node(R e):element(e), _parent(nullptr), _left(nullptr), _right(nullptr){}	
+			
+		};
+
+	public:
+		class Position
+		{	
+			private:
+				Node* v;
+			public:
+				Position(Node* _v = nullptr):v(_v) {}
+				R& operator*(){ return v->element; }
+				//void setElement(E e) { v->element = e; }
+				Position left() const { Position(v->_left); }
+				Position right() const { Position(v->_right); }
+				Position parent() const { Position(v->_parent); }
+				bool isRoot() const { v->parent == nullptr; }
+				bool isExternal() const { return v->_left == nullptr && v->_right == nullptr;}
+				
+				void setElement(const R& elem) { v->element = elem; }
+				
+				bool operator==(const Position& p) const { return this->element == p.element; }
+			
+				friend class LinkedBinaryTree;
+				friend std::ostream& operator<<(std::ostream& os, const Position& pos); 
+		};
+
+		typedef std::list< Position > PositionList;
 	private:
-		Position<T>* _root; //pointer to root
+		Node* _root; //pointer to root
 		int n;//number of nodes
 
 	public:
 		LinkedBinaryTree();
 		int size() const;
 		bool empty() const;
-		Position<T>* root() const;
-		PositionList<T> positions(bool pre_post = true) const;
-		void addRoot(T e);
+		Position root() const;
+		PositionList positions() const;
 		void addRoot();
-		void expandExternal(Position<T>* p, T left_element, T right_element);
-		void expandExternal(Position<T>* p);
-		bool isInternal(Position<T>* p){ return p->isInternal(); }
-		Position<T>& removeAboveExternal(const Position<T>& p);
-		void inorder(Position<T>* v, PositionList<T>& pl) const;
-	protected:
-		void preorder(Position<T>* v, PositionList<T>& pl) const;
-		void postorder(Position<T>* v, PositionList<T>& pl) const;
-		
-};
-
-
-template <typename T, typename R>
-class EulerTour{
-	protected:
-		struct Result{
-				R leftResult;
-				R rightResult;
-				R finalResult;
-			};
-	protected:
-		const LinkedBinaryTree<T>* tree;
-		
-	public:
-		void initialize(const LinkedBinaryTree<T>& t){tree = &t;}
-		int eulerTour(Position<T>& p) const;
-	protected:
-			virtual void visitExternal(Position<T>& p, Result& r) const{}
-			virtual void visitLeft(Position<T>& p, Result& r) const {}
-			virtual void visitBelow(Position<T>& p, Result& r) const {}
-			virtual void visitRight(Position<T>& p, Result& r) const {} 
-			Result initResult() const {return Result();}
-			int result(const Result& r) const { return r.finalResult; }
-};
-
-template < typename T, typename R >
-int EulerTour< T, R >::eulerTour(Position<T>& p) const
-{
-	Result r = initResult();
+		void expandExternal(const Position& p);
+		Position& removeAboveExternal(const Position& p);
 	
-	if(p.isExternal())
-	{
-		visitExternal(p, r);
-	}
-	else
-	{
-		visitLeft(p, r);
-		r.leftResult = eulerTour(*(p.left()));
-		visitBelow(p, r);
-		r.rightResult = eulerTour(*(p.right()));
-		visitRight(p, r);
-	}
-	return result(r);
+		void printTree();
+	protected:
+		void preorder(Node* v, PositionList& pl) const;		
+};
+
+
+template <typename S>
+std::ostream& operator<<(std::ostream& os, const Position<S>& pos)  
+{  
+	os << pos->element;  
+	return os;  
 }
 
 template <typename T>
-LinkedBinaryTree<T>::LinkedBinaryTree(): _root(nullptr), n(0)
+LinkedBinaryTree<T>::LinkedBinaryTree(): _root(nullptr), n(0) 
 {
 }
 
@@ -92,55 +101,35 @@ bool LinkedBinaryTree<T>::empty() const
 }
 
 template <typename T>
-void LinkedBinaryTree<T>::addRoot(T e)
+typename LinkedBinaryTree<T>::Position LinkedBinaryTree<T>::root() const
 {
-	_root = new Position<T>();
-	_root->setElement(e);
-	n = 1;
+	return Position(_root);//copy constructor
 }
 
 template <typename T>
 void LinkedBinaryTree<T>::addRoot()
 {
-	_root = new Position<T>();
-	n = 1;
+	_root = new Node; n = 1;
 }
 
+
 template <typename T>
-void LinkedBinaryTree<T>::expandExternal(Position<T>* p, T left_element, T right_element)
+void LinkedBinaryTree<T>::expandExternal(const typename LinkedBinaryTree<T>::Position& p)
 {
-	Position<T>* v = p;
-	auto left_child = new Position<T>(left_element);
-	v->setLeft(left_child);
-	left_child->setParent(v);
-	//std::cout << "left_child: " << *(*left_child->parent()) << std::endl;
-	auto right_child = new Position<T>(right_element);
-	v->setRight(right_child);
-	right_child->setParent(v);
-	//std::cout << "right_child: " << *(*right_child->parent()) << std::endl;
+	Node* v = p.v;
+	v->_left = new Node;
+	v->_left->_parent = v;
+	v->_right = new Node;
+	v->_right->_parent = v;
 	n += 2;
 }
 
 template <typename T>
-void LinkedBinaryTree<T>::expandExternal(Position<T>* p)
+typename LinkedBinaryTree<T>::Position& LinkedBinaryTree<T>::removeAboveExternal(const Position& p)
 {
-	Position<T>* v = p;
-	auto left_child = new Position<T>;
-	v->setLeft(left_child);
-	left_child->setParent(v);
-	auto right_child = new Position<T>;
-	v->setRight(right_child);
-	right_child->setParent(v);
-	n += 2;
-}
-
-
-template <typename T>
-Position<T>& LinkedBinaryTree<T>::removeAboveExternal(const Position<T>& p)
-{
-	Position<T>* w = p;
-	Position<T>* v = p.parent;
-	Position<T>* sib = (w == v->right ? v->left : v->right);
+	Node* w = p.v;
+	Node* v = w->_parent;
+	Node* sib = (w == v->_left ? v->_left : v->_right);
 	if(v == _root)
 	{
 		_root = sib;
@@ -148,10 +137,10 @@ Position<T>& LinkedBinaryTree<T>::removeAboveExternal(const Position<T>& p)
 	}  
 	else
 	{
-		Position<T>* gpar = v->parent;
-		if(v == gpar->left) gpar->left = sib;
-		else gpar->right = sib;
-		sib->parent = gpar;
+		Node* gpar = v->_parent;
+		if(v == gpar->left) gpar->_left = sib;
+		else gpar->_right = sib;
+		sib->_parent = gpar;
 	}
 	delete w; delete v;
 	n -= 2;
@@ -159,69 +148,29 @@ Position<T>& LinkedBinaryTree<T>::removeAboveExternal(const Position<T>& p)
 }
 
 template <typename T>
-PositionList<T> LinkedBinaryTree<T>::positions(bool pre_post) const
+typename LinkedBinaryTree<T>::PositionList LinkedBinaryTree<T>::positions() const
 {
-	PositionList<T> pl;
-	if(pre_post)
-		preorder(_root, pl);
-	else
-		postorder(_root, pl);
-	return PositionList<T>(pl);
+	PositionList pl;
+	preorder(_root, pl);
+	return PositionList(pl);
 }
 
 template <typename T>
-Position<T>* LinkedBinaryTree<T>::root() const
+void LinkedBinaryTree<T>::preorder(Node* v, PositionList& pl) const
 {
-	return _root;
+	std::cout << "v->element: " << v->element << std::endl;
+	pl.push_back(Position(v));
+	if(v->_left != nullptr)
+		preorder(v->_left, pl);
+	if(v->_right != nullptr)
+		preorder(v->_right, pl);
 }
 
 template <typename T>
-void LinkedBinaryTree<T>::preorder(Position<T>* v, PositionList<T>& pl) const
+void LinkedBinaryTree<T>::printTree()
 {
-	pl.push_back(Position<T>(v));
-	std::cout << "v->element: " << *(*v) << std::endl;
-	if(v->left() != nullptr)
-	{	
-		//std::cout << "going to left" << std::endl;
-		preorder(v->left(), pl);
-	}
-	if(v->right() != nullptr)
-	{
-		//std::cout << "going to right" << std::endl;
-		preorder(v->right(), pl);
-	}
+	PositionList printPl;
+	preorder(_root, printPl);
 }
-
-template <typename T>
-void LinkedBinaryTree<T>::postorder(Position<T>* v, PositionList<T>& pl) const
-{
-	if(v->left() != nullptr)
-	{	
-		postorder(v->left(), pl);
-	}
-	if(v->right() != nullptr)
-	{
-		postorder(v->right(), pl);
-	}
-	pl.push_back(Position<T>(v));
-	std::cout << "v->element: " << *(*v) << std::endl;
-}
-
-template <typename T>
-void LinkedBinaryTree<T>::inorder(Position<T>* v, PositionList<T>& pl) const
-{
-	if(v->left() != nullptr)
-	{	
-		inorder(v->left(), pl);
-	}
-	pl.push_back(Position<T>(v));
-	std::cout << "v->element: " << *(*v) << std::endl;
-	if(v->right() != nullptr)
-	{
-		inorder(v->right(), pl);
-	}
-}
-
-
 
 #endif

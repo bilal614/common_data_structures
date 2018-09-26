@@ -103,7 +103,8 @@ SearchTree<E>::SearchTree(): T(), n(0)
 template < class E >
 typename SearchTree<E>::TPos SearchTree<E>::root()
 {
-	return T.root()->left();
+	return T.root();
+	//return T.root()->left();
 }
 
 template < class E >
@@ -152,18 +153,31 @@ typename SearchTree<E>::Iterator SearchTree<E>::find(const K& k)
 template < class E >
 typename SearchTree<E>::TPos SearchTree<E>::inserter(const K& k, const V& x)
 {
-	TPos v = finder(k, root());
-	while(v.isInternal())
+	if(n== 0)
 	{
-		
-		v = finder(k, v.right());
+		auto v = root();
+		v.setElement(Entry<K,V>(k, x));
+		//(*v).setKey(k);
+		//(*v).setValue(x);
+		n++;
+		return v;
 	}
-	T.expandExternal(&v);
-	auto _v = *v;
-	_v.setKey(k); 
-	_v.setValue(x);
-	n++;
-	return _v;
+	else
+	{
+		TPos v = finder(k, root());
+		while(v.isInternal())
+		{
+			v = finder(k, v.right());
+		}
+		T.expandExternal(&v);
+		//auto _v = *v;
+		//_v.setKey(k); 
+		//_v.setValue(x);
+		(*v).setKey(k);
+		(*v).setValue(x);
+		n++;
+		return v;
+	}
 }
 
 
