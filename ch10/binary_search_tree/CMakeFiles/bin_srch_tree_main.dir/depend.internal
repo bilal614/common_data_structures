@@ -3,4 +3,5 @@
 
 CMakeFiles/bin_srch_tree_main.dir/src/main.cxx.o
  /home/bilal/DataStructures/ch10/binary_search_tree/src/main.cxx
+ include/bin_srch_tree.h
  include/binary_tree.h

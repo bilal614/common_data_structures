@@ -35,21 +35,22 @@ class LinkedBinaryTree
 	public:
 		class Position
 		{	
-			private:
+			public:
 				Node* v;
 			public:
 				Position(Node* _v = nullptr):v(_v) {}
 				R& operator*(){ return v->element; }
 				//void setElement(E e) { v->element = e; }
-				Position left() const { Position(v->_left); }
-				Position right() const { Position(v->_right); }
-				Position parent() const { Position(v->_parent); }
+				Position& left() const { Position(v->_left); }
+				Position& right() const { Position(v->_right); }
+				Position& parent() const { Position(v->_parent); }
 				bool isRoot() const { v->parent == nullptr; }
 				bool isExternal() const { return v->_left == nullptr && v->_right == nullptr;}
-				
+				bool isInternal() const { return !isExternal();}
+				//Own added functions
 				void setElement(const R& elem) { v->element = elem; }
 				
-				bool operator==(const Position& p) const { return this->element == p.element; }
+				bool operator==(const Position& p) const { return this->v->element == p.v->element; }
 			
 				friend class LinkedBinaryTree;
 				friend std::ostream& operator<<(std::ostream& os, const Position& pos); 
@@ -71,8 +72,9 @@ class LinkedBinaryTree
 		Position& removeAboveExternal(const Position& p);
 	
 		void printTree();
-	protected:
-		void preorder(Node* v, PositionList& pl) const;		
+		void preorder(Node* v, PositionList& pl) const;	
+	protected:	
+		//void preorder(Node* v, PositionList& pl) const;	
 };
 
 
