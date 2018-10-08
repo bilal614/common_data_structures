@@ -72,15 +72,20 @@ class SearchTree
 		class Iterator
 		{
 			private:
-				std::unique_ptr<TPos> v;//position entry
+				//TPos* v;//position entry
+				TPos v;//position entry
 			public:
-				Iterator(const TPos& vv): v(&vv) {}//constructor: direct initialization for object of type Entry
-				const E& operator *() const { return *v; } //get entry(read only)
-				E& operator *() { return *v; }//read/write access
+				//Iterator(TPos* vv):v() { v = vv; }//constructor: direct initialization for object of type Entry
+				Iterator(TPos& vv):v(vv) {  }//constructor: direct initialization for object of type Entry
+				//const E& operator *() const { return *(*v); } //get entry(read only)
+				const E& operator *() const { return (*v); } //get entry(read only)
+				//E& operator *() { return *(*v); }//read/write access
+				E& operator *() { return (*v); }//read/write access
 				bool operator==(const Iterator& p) const { return v == p.v; }
 				//bool operator!=(const Iterator& p) const { return v != p.v; }
 				Iterator& operator++();
 				friend class SearchTree;
+				~Iterator(){ v = nullptr; }
 		};
 };
 
@@ -88,20 +93,26 @@ class SearchTree
 template < class E >
 typename SearchTree<E>::Iterator& SearchTree<E>::Iterator::operator++()
 {
+	//TPos w = v->right();
 	TPos w = v.right();
 	if(w.isInternal())
 	{
+		//do{*v = w; w = w.left(); }
 		do{v = w; w = w.left(); }
 		while(!w.isExternal());
 	}
 	else
 	{
+		//w = v->parent();
 		w = v.parent();
+		//while(*v == w.right())
 		while(v == w.right())
 		{
+			//*v = w;
 			v = w; 
 			w = w.parent();
 		}
+		//*v = w;
 		v = w;
 	}
 	return *this;
@@ -129,12 +140,15 @@ typename SearchTree<E>::Iterator SearchTree<E>::begin()
 	{
 		v = v.left();
 	}
+	//return Iterator(&v.parent());
 	return Iterator(v.parent());
 }
 
 template < class E >
 typename SearchTree<E>::Iterator SearchTree<E>::end()
 {
+	//auto root = &T.root();
+	//auto _root = &root();
 	return Iterator(T.root());
 }
 
@@ -188,6 +202,7 @@ template < class E >
 typename SearchTree<E>::Iterator SearchTree<E>::insert(const K& k, const V& x)
 {
 	TPos v = inserter(k, x);
+	//return Iterator(&v);
 	return Iterator(v);  
 }
 
@@ -231,7 +246,7 @@ void SearchTree<E>::printTree()
 	
 	auto it = begin();
 	auto ending = end();
-	++it;
+	//++it;
 	//for(; it != ending; ++it)
 	while((it == ending) == false)
 	{

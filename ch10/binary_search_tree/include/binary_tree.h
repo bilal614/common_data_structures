@@ -1,6 +1,5 @@
 #ifndef BIN_SRCH_TREE
 
-
 #include <iostream>
 #include <typeinfo>
 #include <exception>
@@ -9,13 +8,10 @@
 #include <algorithm>    // std::for_each
 #include <iterator>
 
-
 #define BIN_SRCH_TREE
 
 template <typename _type> class Position;
 template <typename _type> class LinkedBinaryTree;
- 
-
 
 template <typename R>
 class LinkedBinaryTree
@@ -102,10 +98,24 @@ bool LinkedBinaryTree<T>::empty() const
 	return size() == 0;
 }
 
+
 template <typename T>
 typename LinkedBinaryTree<T>::Position LinkedBinaryTree<T>::root() const
 {
-	return Position(_root);//copy constructor
+	return Position(_root);
+	//Position Root  = new Position(_root);
+	//Root.v = _root;
+	//return *Root;
+	/*
+	if(_root != nullptr)
+	{
+		return Position(_root);
+	}
+	else
+	{
+		return Position();
+	}
+	*/
 }
 
 template <typename T>
