@@ -76,7 +76,8 @@ class SearchTree
 				TPos v;//position entry
 			public:
 				//Iterator(TPos* vv):v() { v = vv; }//constructor: direct initialization for object of type Entry
-				Iterator(TPos& vv):v(vv) {  }//constructor: direct initialization for object of type Entry
+				Iterator(TPos& vv)/*:v(vv)*/ { v.v = vv.v; std::cout << __PRETTY_FUNCTION__ << std::endl; }//constructor: direct initialization for object of type Entry
+				Iterator(TPos&& vv):v(std::move(vv)){ std::cout << __PRETTY_FUNCTION__ << std::endl; }
 				//const E& operator *() const { return *(*v); } //get entry(read only)
 				const E& operator *() const { return (*v); } //get entry(read only)
 				//E& operator *() { return *(*v); }//read/write access

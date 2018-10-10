@@ -25,7 +25,8 @@ class LinkedBinaryTree
 			Node* _right;
 			Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}	
 			Node(R e):element(e), _parent(nullptr), _left(nullptr), _right(nullptr){}	
-			
+			Node(const Node& _n){ _parent = _n->_parent; _left = _n->_left; _right = _n->_right; element = _n->element;}
+			Node& operator=(const Node& _n){ _parent = _n->_parent; _left = _n->_left; _right = _n->_right; element = _n->element;}
 		};
 
 	public:
@@ -34,8 +35,13 @@ class LinkedBinaryTree
 			public:
 				Node* v;
 			public:
-				Position(Node* _v = nullptr):v(_v) {}
+				Position(Node* _v = nullptr): v()/*: v(_v)*/ { v = _v;v->element = _v->element; v->_left = _v->_left; 
+					v->_right = _v->_right;
+					v->_parent = _v->_parent;}
 				R& operator*(){ return v->element; }
+				Position(const Position& pos) { v->element = pos.v->element; v->_left = pos.v->_left; 
+					v->_right = pos.v->_right;
+					v->_parent = pos.v->_parent;}
 				//void setElement(E e) { v->element = e; }
 				Position& left() const { Position(v->_left); }
 				Position& right() const { Position(v->_right); }
@@ -103,20 +109,8 @@ template <typename T>
 typename LinkedBinaryTree<T>::Position LinkedBinaryTree<T>::root() const
 {
 	return Position(_root);
-	//Position Root  = new Position(_root);
-	//Root.v = _root;
-	//return *Root;
-	/*
-	if(_root != nullptr)
-	{
-		return Position(_root);
-	}
-	else
-	{
-		return Position();
-	}
-	*/
 }
+
 
 template <typename T>
 void LinkedBinaryTree<T>::addRoot()
