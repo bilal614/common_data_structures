@@ -25,34 +25,30 @@ class LinkedBinaryTree
 			Node* _right;
 			Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}	
 			Node(R e):element(e), _parent(nullptr), _left(nullptr), _right(nullptr){}	
-			Node(const Node& _n){ _parent = _n->_parent; _left = _n->_left; _right = _n->_right; element = _n->element;}
-			Node& operator=(const Node& _n){ _parent = _n->_parent; _left = _n->_left; _right = _n->_right; element = _n->element;}
+			//Node(const Node& _n){ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; }
+			Node& operator=(const Node& _n){ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; return *this;}
 		};
 
 	public:
 		class Position
 		{	
 			public:
-				Node* v;
+				Node* node;
 			public:
-				Position(Node* _v = nullptr): v()/*: v(_v)*/ { v = _v;v->element = _v->element; v->_left = _v->_left; 
-					v->_right = _v->_right;
-					v->_parent = _v->_parent;}
-				R& operator*(){ return v->element; }
-				Position(const Position& pos) { v->element = pos.v->element; v->_left = pos.v->_left; 
-					v->_right = pos.v->_right;
-					v->_parent = pos.v->_parent;}
+				Position(Node* _v = nullptr): node(_v){ }
+				R& operator*(){ return node->element; }
+				Position(const Position& pos): node(pos.node) { /*v = pos;*/ }
 				//void setElement(E e) { v->element = e; }
-				Position& left() const { Position(v->_left); }
-				Position& right() const { Position(v->_right); }
-				Position& parent() const { Position(v->_parent); }
-				bool isRoot() const { v->parent == nullptr; }
-				bool isExternal() const { return v->_left == nullptr && v->_right == nullptr;}
+				Position left() const { Position(node->_left); }
+				Position right() const { Position(node->_right); }
+				Position parent() const { Position(node->_parent); }
+				bool isRoot() const { node->parent == nullptr; }
+				bool isExternal() const { return node->_left == nullptr && node->_right == nullptr;}
 				bool isInternal() const { return !isExternal();}
 				//Own added functions
-				void setElement(const R& elem) { v->element = elem; }
+				void setElement(const R& elem) { node->element = elem; }
 				
-				bool operator==(const Position& p) const { return this->v->element == p.v->element; }
+				bool operator==(const Position& p) const { return this->node->element == p.node->element; }
 			
 				friend class LinkedBinaryTree;
 				friend std::ostream& operator<<(std::ostream& os, const Position& pos); 
@@ -122,7 +118,7 @@ void LinkedBinaryTree<T>::addRoot()
 template <typename T>
 void LinkedBinaryTree<T>::expandExternal(const typename LinkedBinaryTree<T>::Position& p)
 {
-	Node* v = p.v;
+	Node* v = p.node;
 	v->_left = new Node;
 	v->_left->_parent = v;
 	v->_right = new Node;

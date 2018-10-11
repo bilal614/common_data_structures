@@ -11,7 +11,7 @@ class Entry
 	public:
 		typedef K Key;
 		typedef V Value;
-	public:
+	public: 
 		Entry(const K& k = K(), const V& v = V()): _key(k), _value(v){}
 		const K& key() const { return _key; }
 		const V& value() const { return _value; }
@@ -76,7 +76,7 @@ class SearchTree
 				TPos v;//position entry
 			public:
 				//Iterator(TPos* vv):v() { v = vv; }//constructor: direct initialization for object of type Entry
-				Iterator(TPos& vv)/*:v(vv)*/ { v.v = vv.v; std::cout << __PRETTY_FUNCTION__ << std::endl; }//constructor: direct initialization for object of type Entry
+				Iterator(TPos& vv) : v(vv) { /*v.v = vv.v;*/ std::cout << __PRETTY_FUNCTION__ << std::endl; }//constructor: direct initialization for object of type Entry
 				Iterator(TPos&& vv):v(std::move(vv)){ std::cout << __PRETTY_FUNCTION__ << std::endl; }
 				//const E& operator *() const { return *(*v); } //get entry(read only)
 				const E& operator *() const { return (*v); } //get entry(read only)
@@ -129,7 +129,9 @@ SearchTree<E>::SearchTree(): T(), n(0)
 template < class E >
 typename SearchTree<E>::TPos SearchTree<E>::root() const
 {
-	return T.root().left();
+	TPos myRoot = TPos(T.root().node->_left); 
+	//auto trueRoot = myRoot.left();
+	return myRoot;
 	//return T.root()->left();
 }
 
@@ -158,11 +160,11 @@ typename SearchTree<E>::TPos SearchTree<E>::finder(const K& k, const TPos& v)
 {
 	//auto _v = v;
 	if(v.isExternal()) return v;
-	if(k < v.v->element.key())
+	if(k < v.node->element.key())
 	{
 		return finder(k, v.left());
 	}
-	else if(v.v->element.key() < k)
+	else if(v.node->element.key() < k)
 	{
 		return finder(k, v.right());
 	}
@@ -189,8 +191,8 @@ typename SearchTree<E>::TPos SearchTree<E>::inserter(const K& k, const V& x)
 	}
 	T.expandExternal(v);
 	
-	v.v->element.setKey(k);
-	v.v->element.setValue(x);
+	v.node->element.setKey(k);
+	v.node->element.setValue(x);
 	//v->setKey(k);
 	//v.v->setValue(x);
 	//v.setValue(x);
