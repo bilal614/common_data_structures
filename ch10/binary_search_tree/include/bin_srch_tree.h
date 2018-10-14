@@ -72,16 +72,16 @@ class SearchTree
 		class Iterator
 		{
 			private:
-				//TPos* v;//position entry
-				TPos v;//position entry
+				TPos* v;//position entry
+				//TPos v;//position entry
 			public:
 				//Iterator(TPos* vv):v() { v = vv; }//constructor: direct initialization for object of type Entry
-				Iterator(TPos& vv) : v(vv) { /*v.v = vv.v;*/ std::cout << __PRETTY_FUNCTION__ << std::endl; }//constructor: direct initialization for object of type Entry
-				Iterator(TPos&& vv):v(std::move(vv)){ std::cout << __PRETTY_FUNCTION__ << std::endl; }
-				//const E& operator *() const { return *(*v); } //get entry(read only)
-				const E& operator *() const { return (*v); } //get entry(read only)
-				//E& operator *() { return *(*v); }//read/write access
-				E& operator *() { return (*v); }//read/write access
+				Iterator(TPos* vv): v(vv) { std::cout << __PRETTY_FUNCTION__ << std::endl; }//constructor: direct initialization for object of type Entry
+				//Iterator(TPos&& vv): v(std::move(vv)) { v->node = vv.node; std::cout << __PRETTY_FUNCTION__ << std::endl; }
+				const E& operator *() const { return *(*v); } //get entry(read only)
+				//const E& operator *() const { return (*v); } //get entry(read only)
+				E& operator *() { return *(*v); }//read/write access
+				//E& operator *() { return (*v); }//read/write access
 				bool operator==(const Iterator& p) const { return v == p.v; }
 				//bool operator!=(const Iterator& p) const { return v != p.v; }
 				Iterator& operator++();
@@ -94,27 +94,27 @@ class SearchTree
 template < class E >
 typename SearchTree<E>::Iterator& SearchTree<E>::Iterator::operator++()
 {
-	//TPos w = v->right();
-	TPos w = v.right();
+	TPos w = v->right();
+	//TPos w = v.right();
 	if(w.isInternal())
 	{
-		//do{*v = w; w = w.left(); }
-		do{v = w; w = w.left(); }
+		do{*v = w; w = w.left(); }
+		//do{v = w; w = w.left(); }
 		while(!w.isExternal());
 	}
 	else
 	{
-		//w = v->parent();
-		w = v.parent();
-		//while(*v == w.right())
-		while(v == w.right())
+		w = v->parent();
+		//w = v.parent();
+		while(*v == w.right())
+		//while(v == w.right())
 		{
-			//*v = w;
-			v = w; 
+			*v = w;
+			//v = w; 
 			w = w.parent();
 		}
-		//*v = w;
-		v = w;
+		*v = w;
+		//v = w;
 	}
 	return *this;
 }
@@ -129,7 +129,7 @@ SearchTree<E>::SearchTree(): T(), n(0)
 template < class E >
 typename SearchTree<E>::TPos SearchTree<E>::root() const
 {
-	TPos myRoot = TPos(T.root().node->_left); 
+	TPos myRoot = T.root().node->_left; 
 	//auto trueRoot = myRoot.left();
 	return myRoot;
 	//return T.root()->left();
@@ -144,7 +144,8 @@ typename SearchTree<E>::Iterator SearchTree<E>::begin()
 		v = v.left();
 	}
 	//return Iterator(&v.parent());
-	return Iterator(v.parent());
+	auto a_parent = v.parent(); 
+	return Iterator(&a_parent);
 }
 
 template < class E >
@@ -152,7 +153,8 @@ typename SearchTree<E>::Iterator SearchTree<E>::end()
 {
 	//auto root = &T.root();
 	//auto _root = &root();
-	return Iterator(T.root());
+	auto a_root = T.root();
+	return Iterator(&a_root);
 }
 
 template < class E >
@@ -162,11 +164,15 @@ typename SearchTree<E>::TPos SearchTree<E>::finder(const K& k, const TPos& v)
 	if(v.isExternal()) return v;
 	if(k < v.node->element.key())
 	{
-		return finder(k, v.left());
+		TPos a_left = v.left();
+		return finder(k, a_left);
+		//return finder(k, v.left());
 	}
 	else if(v.node->element.key() < k)
 	{
-		return finder(k, v.right());
+		TPos a_right = v.right();
+		return finder(k, a_right);
+		//return finder(k, v.right());
 	}
 	return v;
 }
@@ -187,7 +193,8 @@ typename SearchTree<E>::TPos SearchTree<E>::inserter(const K& k, const V& x)
 	TPos v = finder(k, root());
 	while(v.isInternal())
 	{
-		v = finder(k, v.right());
+		auto move_on = v.right(); 
+		v = finder(k, move_on);
 	}
 	T.expandExternal(v);
 	
@@ -206,7 +213,7 @@ typename SearchTree<E>::Iterator SearchTree<E>::insert(const K& k, const V& x)
 {
 	TPos v = inserter(k, x);
 	//return Iterator(&v);
-	return Iterator(v);  
+	return Iterator(&v);  
 }
 
 template < class E >

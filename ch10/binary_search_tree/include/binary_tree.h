@@ -25,7 +25,7 @@ class LinkedBinaryTree
 			Node* _right;
 			Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}	
 			Node(R e):element(e), _parent(nullptr), _left(nullptr), _right(nullptr){}	
-			//Node(const Node& _n){ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; }
+			Node(const Node& _n){ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; }
 			Node& operator=(const Node& _n){ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; return *this;}
 		};
 
@@ -36,18 +36,19 @@ class LinkedBinaryTree
 				Node* node;
 			public:
 				Position(Node* _v = nullptr): node(_v){ }
+				Position(const Position& v): node(v.node){ }
 				R& operator*(){ return node->element; }
-				Position(const Position& pos): node(pos.node) { /*v = pos;*/ }
+				//Position(const Position& pos): node(pos.node) { }
 				//void setElement(E e) { v->element = e; }
-				Position left() const { Position(node->_left); }
-				Position right() const { Position(node->_right); }
-				Position parent() const { Position(node->_parent); }
+				Position left() const { return Position(node->_left); }
+				Position right() const { return Position(node->_right); }
+				Position parent() const { return Position(node->_parent); }
 				bool isRoot() const { node->parent == nullptr; }
 				bool isExternal() const { return node->_left == nullptr && node->_right == nullptr;}
 				bool isInternal() const { return !isExternal();}
 				//Own added functions
 				void setElement(const R& elem) { node->element = elem; }
-				
+				~Position() { node = nullptr; }
 				bool operator==(const Position& p) const { return this->node->element == p.node->element; }
 			
 				friend class LinkedBinaryTree;

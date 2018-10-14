@@ -6,6 +6,7 @@ PROJECT(hash_maps C CXX)
 
 #To generate debugging information to use with gdb
 set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 
 #Bring the headers, such as Student.h into the project
 INCLUDE_DIRECTORIES(include)
