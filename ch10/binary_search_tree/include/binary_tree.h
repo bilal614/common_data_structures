@@ -68,7 +68,7 @@ class LinkedBinaryTree
 		PositionList positions() const;
 		void addRoot();
 		void expandExternal(const Position& p);
-		Position& removeAboveExternal(const Position& p);
+		Position removeAboveExternal(const Position& p);
 	
 		void printTree();
 		void preorder(Node* v, PositionList& pl) const;	
@@ -128,26 +128,28 @@ void LinkedBinaryTree<T>::expandExternal(const typename LinkedBinaryTree<T>::Pos
 }
 
 template <typename T>
-typename LinkedBinaryTree<T>::Position& LinkedBinaryTree<T>::removeAboveExternal(const Position& p)
+typename LinkedBinaryTree<T>::Position LinkedBinaryTree<T>::removeAboveExternal(const Position& p)
 {
-	Node* w = p.v;
+	Node* w = p.node;
 	Node* v = w->_parent;
 	Node* sib = (w == v->_left ? v->_left : v->_right);
 	if(v == _root)
 	{
 		_root = sib;
-		sib->parent = nullptr;
+		sib->_parent = nullptr;
 	}  
 	else
 	{
 		Node* gpar = v->_parent;
-		if(v == gpar->left) gpar->_left = sib;
+		if(v == gpar->_left) gpar->_left = sib;
 		else gpar->_right = sib;
 		sib->_parent = gpar;
 	}
 	delete w; delete v;
 	n -= 2;
-	return sib;
+	//auto _sib = Position(sib);
+	//return _sib;
+	return Position(sib);
 }
 
 template <typename T>
