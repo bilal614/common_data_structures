@@ -25,8 +25,11 @@ class LinkedBinaryTree
 			Node* _right;
 			Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}	
 			Node(R e):element(e), _parent(nullptr), _left(nullptr), _right(nullptr){}	
-			Node(const Node& _n){ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; }
-			Node& operator=(const Node& _n){ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; return *this;}
+			Node(const Node& _n)//copy constructor
+			{ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; }
+			Node& operator=(const Node& _n)//copy assignment operator
+			{ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; return *this;}
+			//~Node(){delete _left; _left = nullptr; delete _right; _right = nullptr; delete _parent; _parent = nullptr;}
 		};
 
 	public:

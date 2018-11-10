@@ -12,7 +12,7 @@
 
 #define BIN_TREE_POS
 
-
+/*
 template <typename T, typename N>
 class Node
 {
@@ -24,12 +24,36 @@ class Node
 		Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}	
 		
 };
+*/
+template <typename T>
+class LinkedBinaryTree;
 
 template <typename T>
-class Position: public Node< T, Position<T> >
-{	
+class Node 
+{
 	public:
+		T element;
+		Node* _parent;
+		Node* _left;
+		Node* _right;
+	public:
+		Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}
+		Node(T e):element(e), _parent(nullptr), _left(nullptr), _right(nullptr){}
+};
+
+template <typename T>
+class Position
+//class Position: public Node< T, Position<T> >
+{	
+	private:
+		Node<T>* v;
+	public:
+		Position(Node<T>* _v = nullptr): v(_v){}
 		T& operator*();
+		Position left() const;
+		Position right() const;
+		Position parent() const;
+		/*
 		Position* left() const;
 		Position* right() const;
 		Position* parent() const;
@@ -37,14 +61,20 @@ class Position: public Node< T, Position<T> >
 		void setRight(Position* r);
 		void setParent(Position* p);
 		void setElement(T e);
+		*/
+		bool operator==(const Position<T>& p);
+		bool operator!=(const Position<T>& p);
 		bool isRoot() const;
 		bool isExternal() const;
 		Position();
+		friend class LinkedBinaryTree<T>;
+		/*
 		Position(T elem);
 		Position(T elem, Position* prnt);
 		Position(Position* p){ Node< T, Position<T> >::element = p->element; 
 			Node< T, Position<T> >::_parent = p->parent(); Node< T, Position<T> >::_left = p->left(); 
 			Node< T, Position<T> >::_right = p->right();}
+			*/
 		//friend std::ostream& operator<<(std::ostream& os, const Position<T>& pos); 
 	
 };
@@ -62,42 +92,63 @@ template <typename T>
 using PositionList = std::list< Position<T> >;
 
 template <typename T>
-T& Position<T>::operator*() 
+T& Position<T>::operator*()//read and write for element of Node 
 {
-	return Node< T, Position<T> >::element;
+	//return Node< T, Position<T> >::element;
+	return v->element;
 }
 
 template <typename T>
-Position<T>* Position<T>::left() const
+bool Position<T>::operator==(const Position<T>& p)
 {
-	return Node< T, Position<T> >::_left;
+	return (v == p.v);
 }
 
 template <typename T>
-Position<T>* Position<T>::right() const
+bool Position<T>::operator!=(const Position<T>& p)
 {
-	return Node< T, Position<T> >::_right;
+	return (v != p.v);
 }
 
 template <typename T>
-Position<T>* Position<T>::parent() const
+Position<T> Position<T>::left() const
+//Position<T>* Position<T>::left() const
 {
-	return Node< T, Position<T> >::_parent;
+	//return Node< T, Position<T> >::_left;
+	return Position<T>(v->_left);
+}
+
+template <typename T>
+Position<T> Position<T>::right() const
+//Position<T>* Position<T>::right() const
+{
+	//return Node< T, Position<T> >::_right;
+	return Position<T>(v->_right);
+}
+
+template <typename T>
+Position<T> Position<T>::parent() const
+//Position<T>* Position<T>::parent() const
+{
+	//return Node< T, Position<T> >::_parent;
+	return Position<T>(v->_parent);
 }
 
 template <typename T>
 bool Position<T>::isRoot() const
 {
-	return (Node< T, Position<T> >::_parent == nullptr);
+	//return (Node< T, Position<T> >::_parent == nullptr);
+	return (v->_parent == nullptr);
 }
 
 template <typename T>
 bool Position<T>::isExternal() const
 {
-	return ((Node< T, Position<T> >::_left == nullptr) && (Node< T, Position<T> >::_right == nullptr));
+	//return ((Node< T, Position<T> >::_left == nullptr) && (Node< T, Position<T> >::_right == nullptr));
+	return (v->_left == nullptr && v->_right == nullptr);
 }
 
-
+/*
 template <typename T>
 void Position<T>::setLeft(Position<T>* l)
 {
@@ -148,5 +199,5 @@ Position<T>::Position(T elem, Position* prnt)
 	Node< T, Position<T> >::_left = nullptr;
 	Node< T, Position<T> >::_right = nullptr;
 }
-
+*/
 #endif

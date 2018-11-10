@@ -7,19 +7,34 @@ int main(int argc, char * argv[])
 	
 	LinkedBinaryTree<int> bin_tree;
 	
-	bin_tree.addRoot(0);
+	bin_tree.addRoot();
+	/*
 	auto bin_root =  bin_tree.root();
 	std::cout << *(*bin_root) << std::endl;
 	bin_tree.expandExternal(bin_root, 101, 102);
 	bin_tree.expandExternal(bin_root->left(), 201, 202);
 	bin_tree.expandExternal(bin_root->right(), 203, 204);
 	//std::cout << "left of root: " << *(*(bin_root->left())) << std::endl;
+	*/
+	Position<int> myRoot = bin_tree.root();
+	*myRoot = 1;
+	bin_tree.expandExternal(myRoot);
+	Position<int> myLeft = myRoot.left();
+	*myLeft = 11;
+	bin_tree.expandExternal(myLeft);
+	Position<int> myRight = myRoot.right();
+	*myRight = 12;
+	bin_tree.expandExternal(myRight);
 	
-	//bin_tree.expandExternal(new Position<int>(101));
-	//bin_tree.expandExternal(new Position<int>(102));
-	//bin_tree.expandExternal(new Position<int>(201));
-	//bin_tree.expandExternal(new Position<int>(202));
-	
+	/* 
+	bin_tree.expandExternal(Position<int>(new Node<int>(101)));
+	bin_tree.expandExternal(Position<int>(new Node<int>(102)));
+	bin_tree.expandExternal(Position<int>(new Node<int>(201)));
+	bin_tree.expandExternal(Position<int>(new Node<int>(202)));
+	*/
+	PositionList<int> pl;
+	bin_tree.inorder(bin_tree.root(), pl);
+	/*
 	std::cout << "Pre-order traversal: " << std::endl;
 	auto pre_list = bin_tree.positions();
 	std::cout << "Post-order traversal: " << std::endl;
@@ -50,5 +65,6 @@ int main(int argc, char * argv[])
 	exprTour.eulerTour((*bin_root));
 	std::cout << std::endl;
 	*/
+	
 	return 0;
 }

@@ -8,19 +8,25 @@ template <typename T>
 class LinkedBinaryTree
 {
 	private:
-		Position<T>* _root; //pointer to root
+		//Position<T>* _root; //pointer to root
+		Node<T>* _root;
 		int n;//number of nodes
 
 	public:
 		LinkedBinaryTree();
 		int size() const;
 		bool empty() const;
-		Position<T>* root() const;
+		Position<T> root() const;
+		//Position<T>* root() const;
 		PositionList<T> positions(bool pre_post = true) const;
-		void addRoot(T e);
-		void expandExternal(Position<T>* p, T left_element, T right_element);
-		Position<T>& removeAboveExternal(const Position<T>& p);
-		void inorder(Position<T>* v, PositionList<T>& pl) const;
+		//void addRoot(T e);
+		void addRoot();
+		void expandExternal(const Position<T>& p);
+		Position<T> removeAboveExternal(const Position<T>& p);
+		//void expandExternal(Position<T>* p, T left_element, T right_element);
+		//Position<T>& removeAboveExternal(const Position<T>& p);
+		//void inorder(Position<T>* v, PositionList<T>& pl) const;
+		void inorder(Position<T> v, PositionList<T>& pl) const;
 	protected:
 		void preorder(Position<T>* v, PositionList<T>& pl) const;
 		void postorder(Position<T>* v, PositionList<T>& pl) const;
@@ -89,16 +95,20 @@ bool LinkedBinaryTree<T>::empty() const
 }
 
 template <typename T>
-void LinkedBinaryTree<T>::addRoot(T e)
+void LinkedBinaryTree<T>::addRoot()
+//void LinkedBinaryTree<T>::addRoot(T e)
 {
-	_root = new Position<T>();
-	_root->setElement(e);
+	_root = new Node<T>();
+	//_root = new Position<T>();
+	//_root->setElement(e);
 	n = 1;
 }
 
 template <typename T>
-void LinkedBinaryTree<T>::expandExternal(Position<T>* p, T left_element, T right_element)
+void LinkedBinaryTree<T>::expandExternal(const Position<T>& p)
+//void LinkedBinaryTree<T>::expandExternal(Position<T>* p, T left_element, T right_element)
 {
+	/*
 	Position<T>* v = p;
 	auto left_child = new Position<T>(left_element);
 	v->setLeft(left_child);
@@ -108,12 +118,19 @@ void LinkedBinaryTree<T>::expandExternal(Position<T>* p, T left_element, T right
 	v->setRight(right_child);
 	right_child->setParent(v);
 	//std::cout << "right_child: " << *(*right_child->parent()) << std::endl;
+	*/
+	Node<T>* v = p.v;
+	v->_left = new Node<T>();
+	v->_left->_parent = v;
+	v->_right = new Node<T>();
+	v->_right->_parent = v;
 	n += 2;
 }
 
 template <typename T>
-Position<T>& LinkedBinaryTree<T>::removeAboveExternal(const Position<T>& p)
+Position<T> LinkedBinaryTree<T>::removeAboveExternal(const Position<T>& p)
 {
+	/*
 	Position<T>* w = p;
 	Position<T>* v = p.parent;
 	Position<T>* sib = (w == v->right ? v->left : v->right);
@@ -129,9 +146,24 @@ Position<T>& LinkedBinaryTree<T>::removeAboveExternal(const Position<T>& p)
 		else gpar->right = sib;
 		sib->parent = gpar;
 	}
+	*/
+	Node<T>* w = p.v; Node<T>* v = w->_parent;
+	Node<T>* sib = (w == v->_right ? v->_left : v->_right);
+	if(v == _root)
+	{
+		_root = sib;
+		sib->_parent = nullptr;
+	}
+	else
+	{
+		Node<T>* gpar = v->_parent;
+		if(v == gpar->_left) gpar->_left = sib;
+		else gpar->_right = sib;
+		sib->_parent = gpar;
+	}
 	delete w; delete v;
 	n -= 2;
-	return sib;
+	return Position<T>(sib);
 }
 
 template <typename T>
@@ -146,9 +178,10 @@ PositionList<T> LinkedBinaryTree<T>::positions(bool pre_post) const
 }
 
 template <typename T>
-Position<T>* LinkedBinaryTree<T>::root() const
+Position<T> LinkedBinaryTree<T>::root() const
+//Position<T>* LinkedBinaryTree<T>::root() const
 {
-	return _root;
+	return Position<T>(_root);
 }
 
 template <typename T>
@@ -184,17 +217,19 @@ void LinkedBinaryTree<T>::postorder(Position<T>* v, PositionList<T>& pl) const
 }
 
 template <typename T>
-void LinkedBinaryTree<T>::inorder(Position<T>* v, PositionList<T>& pl) const
+void LinkedBinaryTree<T>::inorder(Position<T> v, PositionList<T>& pl) const
+//void LinkedBinaryTree<T>::inorder(Position<T>* v, PositionList<T>& pl) const
 {
-	if(v->left() != nullptr)
+	if(v.left() != nullptr)
 	{	
-		inorder(v->left(), pl);
+		inorder(v.left(), pl);
 	}
-	pl.push_back(Position<T>(v));
-	std::cout << "v->element: " << *(*v) << std::endl;
-	if(v->right() != nullptr)
+	//pl.push_back(Position<T>(v));
+	pl.push_back(v);
+	std::cout << "v->element: " << (*v) << std::endl;
+	if(v.right() != nullptr)
 	{
-		inorder(v->right(), pl);
+		inorder(v.right(), pl);
 	}
 }
 
