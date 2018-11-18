@@ -26,14 +26,27 @@ int main(int argc, char * argv[])
 	*myRight = 12;
 	bin_tree.expandExternal(myRight);
 	
+	Position<int> myLeftLeft = myLeft.left();
+	*myLeftLeft = 10;
+	bin_tree.expandExternal(myLeftLeft);
+	
 	/* 
 	bin_tree.expandExternal(Position<int>(new Node<int>(101)));
 	bin_tree.expandExternal(Position<int>(new Node<int>(102)));
 	bin_tree.expandExternal(Position<int>(new Node<int>(201)));
 	bin_tree.expandExternal(Position<int>(new Node<int>(202)));
 	*/
-	PositionList<int> pl;
-	bin_tree.inorder(bin_tree.root(), pl);
+	PositionList<int> pl_in;
+	std::cout << "In-order: " << std::endl;
+	bin_tree.inorder(bin_tree.root(), pl_in);
+	
+	PositionList<int> pl_post;
+	std::cout << "Post-order: " << std::endl;
+	bin_tree.postorder(bin_tree.root(), pl_post);
+	
+	PositionList<int> pl_pre;
+	std::cout << "Pre-order: " << std::endl;
+	bin_tree.preorder(bin_tree.root(), pl_pre);
 	/*
 	std::cout << "Pre-order traversal: " << std::endl;
 	auto pre_list = bin_tree.positions();

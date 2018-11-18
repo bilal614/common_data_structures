@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.8)
 
 
 # This is the name of the project
-PROJECT(hash_maps C CXX)
+PROJECT(binary_search_tree C CXX)
 
 #To generate debugging information to use with gdb
 set(CMAKE_BUILD_TYPE Debug)

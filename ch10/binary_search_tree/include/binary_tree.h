@@ -26,9 +26,11 @@ class LinkedBinaryTree
 			Node():element(), _parent(nullptr), _left(nullptr), _right(nullptr){}	
 			Node(R e):element(e), _parent(nullptr), _left(nullptr), _right(nullptr){}	
 			Node(const Node& _n)//copy constructor
-			{ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; }
+			{ _parent = _n._parent; _left = _n._left; _right = _n,_right; element = _n.element; }
+			//{ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; }
 			Node& operator=(const Node& _n)//copy assignment operator
-			{ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; return *this;}
+			{ _parent = _n._parent; _left = _n._left; _right = _n._right; element = _n.element; return *this;}
+			//{ _parent = &_n->_parent; _left = &_n->_left; _right = &_n->_right; element = &_n->element; return *this;}
 			//~Node(){delete _left; _left = nullptr; delete _right; _right = nullptr; delete _parent; _parent = nullptr;}
 		};
 
@@ -50,9 +52,9 @@ class LinkedBinaryTree
 				bool isExternal() const { return node->_left == nullptr && node->_right == nullptr;}
 				bool isInternal() const { return !isExternal();}
 				//Own added functions
-				void setElement(const R& elem) { node->element = elem; }
+				//void setElement(const R& elem) { node->element = elem; }
 				~Position() { node = nullptr; }
-				bool operator==(const Position& p) const { return this->node->element == p.node->element; }
+				bool operator==(const Position& p) const { return (node == p.node); }
 			
 				friend class LinkedBinaryTree;
 				friend std::ostream& operator<<(std::ostream& os, const Position& pos); 
@@ -135,7 +137,7 @@ typename LinkedBinaryTree<T>::Position LinkedBinaryTree<T>::removeAboveExternal(
 {
 	Node* w = p.node;
 	Node* v = w->_parent;
-	Node* sib = (w == v->_left ? v->_left : v->_right);
+	Node* sib = (w == v->_left ? v->_right : v->_left);
 	if(v == _root)
 	{
 		_root = sib;
