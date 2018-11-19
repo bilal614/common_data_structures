@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bilal/DataStructures/ch10/avl_tree/src/main.cxx
+avl_tree.h
+/home/bilal/DataStructures/ch10/avl_tree/src/avl_tree.h
+
+include/avl_tree.h
+bin_srch_tree.h
+include/bin_srch_tree.h
+algorithm
+-
+
+include/bin_srch_tree.h
+binary_tree.h
+include/binary_tree.h
+memory
+-
+
+include/binary_tree.h
+iostream
+-
+typeinfo
+-
+exception
+-
+string
+-
+list
+-
+algorithm
+-
+iterator
+-
+
